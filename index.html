@@ -1,65 +1,337 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Configurador - Torre edición vídeo</title>
-<link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pear Republic - Configurador de Ordenadores para Edición de Vídeo</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos personalizados para el tema */
+        :root {
+            --color-primary: #1F2937; /* Gris Oscuro */
+            --color-secondary: #4F46E5; /* Índigo */
+            --color-accent: #10B981; /* Esmeralda */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9FAFB;
+        }
+        .text-primary { color: var(--color-primary); }
+        .bg-primary { background-color: var(--color-primary); }
+        .text-secondary { color: var(--color-secondary); }
+        .bg-secondary { background-color: var(--color-secondary); }
+        .btn-buy {
+            transition: all 0.3s ease;
+        }
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4);
+        }
+        /* Estilo para los cards de selección de modelo */
+        .model-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+        .model-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .model-card.selected {
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5);
+        }
+        select, input[type="radio"] {
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-  <header class="site-header">
-    <h1>Configura tu ordenador</h1>
-  </header>
+<body class="antialiased p-4 md:p-8">
 
-  <main class="content">
-    <div class="left-col">
-      <img id="pc-image" src="pc.png" alt="Torre para edición de vídeo" />
+    <div class="max-w-6xl mx-auto">
+        <!-- Encabezado / Logo -->
+        <header class="text-center mb-10 p-6 rounded-xl bg-white shadow-lg">
+            <h1 class="text-5xl font-extrabold text-primary tracking-tight">
+                🍐 Pear Republic
+            </h1>
+            <p class="mt-2 text-xl text-gray-500">Configura el ordenador perfecto para tu flujo de trabajo de vídeo.</p>
+        </header>
+
+        <main id="configurator" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Columna 1: Selección de Modelo Base -->
+            <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xl h-fit sticky top-4">
+                <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">1. Elige tu Modelo Base</h2>
+
+                <div class="space-y-4" id="base-model-selection">
+                    <!-- Cards de modelos base se insertarán aquí por JS -->
+                </div>
+
+                <div class="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
+                    <p class="font-semibold text-lg text-primary">Precio Base:</p>
+                    <p id="base-price-display" class="text-2xl font-extrabold text-secondary mt-1">
+                        €0
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- Columna 2: Personalización de Componentes -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-xl">
+                <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">2. Personaliza tus Componentes</h2>
+
+                <div id="component-options" class="space-y-6">
+                    <!-- Desplegables de componentes se insertarán aquí por JS -->
+                </div>
+
+                <!-- Botón de Compra y Resumen Final -->
+                <div class="mt-10 pt-6 border-t-2 border-dashed border-gray-300">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <p class="font-semibold text-2xl text-primary">Precio Total Estimado:</p>
+                            <p id="total-price-display" class="text-5xl font-extrabold text-accent mt-1">
+                                €0
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1">Impuestos y envío no incluidos.</p>
+                        </div>
+                        
+                        <button id="buy-button" 
+                                class="btn-buy bg-secondary text-white py-3 px-8 rounded-full font-bold uppercase text-xl shadow-lg hover:bg-indigo-700 disabled:opacity-50"
+                                disabled>
+                            Comprar Configuración
+                        </button>
+                    </div>
+
+                    <!-- Mensaje de confirmación/alerta (modal simulado) -->
+                    <div id="message-box" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+                        <div class="bg-white p-8 rounded-lg shadow-2xl max-w-sm text-center">
+                            <svg class="mx-auto h-12 w-12 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <h3 class="mt-2 text-xl font-bold text-primary">¡Configuración Enviada!</h3>
+                            <p class="mt-1 text-gray-600">
+                                Tu pedido ha sido registrado. Precio total: <span id="final-price" class="font-extrabold text-secondary"></span>.
+                            </p>
+                            <button onclick="closeMessageBox()" class="mt-4 bg-secondary text-white py-2 px-4 rounded-full hover:bg-indigo-700">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
     </div>
 
-    <aside class="right-col card">
-      <h2>Elige tus componentes</h2>
+    <script>
+        // --- DATA DE COMPONENTES Y MODELOS BASE ---
+        const componentsData = {
+            'CPU': [
+                { name: "Intel Core i7-14700K (Ideal 4K)", price: 400 },
+                { name: "Intel Core i9-14900K (Máximo 8K)", price: 650 },
+                { name: "AMD Ryzen 9 7950X", price: 550 }
+            ],
+            'GPU': [
+                { name: "NVIDIA GeForce RTX 4070 (12GB)", price: 600 },
+                { name: "NVIDIA GeForce RTX 4080 (16GB)", price: 1100 },
+                { name: "NVIDIA GeForce RTX 4090 (24GB)", price: 1700 }
+            ],
+            'RAM': [
+                { name: "32GB DDR5 5600MHz", price: 120 },
+                { name: "64GB DDR5 6000MHz", price: 250 },
+                { name: "128GB DDR5 6000MHz", price: 500 }
+            ],
+            'SSD': [
+                { name: "1TB NVMe Gen4", price: 80 },
+                { name: "2TB NVMe Gen4", price: 150 },
+                { name: "4TB NVMe Gen4", price: 300 }
+            ],
+            'PSU': [
+                { name: "850W Gold Modular", price: 100 },
+                { name: "1000W Platinum Modular", price: 150 }
+            ]
+        };
 
-      <label class="label">Procesador</label>
-      <select id="cpu" class="select">
-        <option value="450">AMD Ryzen 7 7700X - 450 €</option>
-        <option value="700">AMD Ryzen 9 7900X - 700 €</option>
-        <option value="1000">Intel Core i9-13900K - 1000 €</option>
-      </select>
+        const baseModelsData = {
+            'video_editor': {
+                id: 'video_editor',
+                name: "Editor Pro (4K)",
+                basePrice: 1500,
+                description: "Configuración optimizada para edición 4K y diseño gráfico. Gran equilibrio entre coste y rendimiento.",
+                defaultComponents: {
+                    CPU: "Intel Core i7-14700K (Ideal 4K)",
+                    GPU: "NVIDIA GeForce RTX 4070 (12GB)",
+                    RAM: "32GB DDR5 5600MHz",
+                    SSD: "1TB NVMe Gen4",
+                    PSU: "850W Gold Modular"
+                }
+            },
+            'color_grader': {
+                id: 'color_grader',
+                name: "Color Master (8K)",
+                basePrice: 2200,
+                description: "Máximo rendimiento para corrección de color, VFX y renderizado 8K. Sin compromisos de potencia.",
+                defaultComponents: {
+                    CPU: "Intel Core i9-14900K (Máximo 8K)",
+                    GPU: "NVIDIA GeForce RTX 4080 (16GB)",
+                    RAM: "64GB DDR5 6000MHz",
+                    SSD: "2TB NVMe Gen4",
+                    PSU: "1000W Platinum Modular"
+                }
+            }
+        };
 
-      <label class="label">Memoria RAM</label>
-      <select id="ram" class="select">
-        <option value="150">32 GB (2x16) - 150 €</option>
-        <option value="280">64 GB (2x32) - 280 €</option>
-        <option value="450">128 GB - 450 €</option>
-      </select>
+        let selectedBaseModelId = null;
 
-      <label class="label">Almacenamiento</label>
-      <select id="storage" class="select">
-        <option value="150">1 TB NVMe SSD - 150 €</option>
-        <option value="260">2 TB NVMe SSD - 260 €</option>
-        <option value="480">4 TB NVMe SSD - 480 €</option>
-      </select>
+        // --- FUNCIONES DE UTILIDAD ---
 
-      <label class="label">Tarjeta Gráfica</label>
-      <select id="gpu" class="select">
-        <option value="700">NVIDIA RTX 4070 Ti - 700 €</option>
-        <option value="1300">NVIDIA RTX 4080 - 1300 €</option>
-        <option value="2400">NVIDIA RTX 4090 - 2400 €</option>
-      </select>
+        /** Formatea un número a moneda EUR. */
+        const formatPrice = (price) => {
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(price);
+        };
 
-      <div class="total-row">
-        <div>Precio total:</div>
-        <div id="total-price" class="total-value">0 €</div>
-      </div>
+        /** Genera el HTML para las opciones de un componente (dropdown). */
+        const createComponentDropdown = (componentKey, options, defaultSelection) => {
+            let html = `
+                <div class="component-group p-4 border rounded-lg bg-gray-50">
+                    <label for="${componentKey}" class="block text-lg font-semibold mb-2">${componentKey}</label>
+                    <select id="${componentKey}"
+                            name="${componentKey}"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-150 bg-white"
+                            onchange="calculateTotal()">
+            `;
+            
+            options.forEach(option => {
+                const isSelected = option.name === defaultSelection;
+                const priceText = option.price > 0 ? ` (+${formatPrice(option.price)})` : '';
+                
+                html += `
+                    <option value="${option.name}" data-price="${option.price}" ${isSelected ? 'selected' : ''}>
+                        ${option.name} ${priceText}
+                    </option>
+                `;
+            });
 
-      <button id="buy-btn" class="buy-btn">Comprar ahora</button>
-    </aside>
-  </main>
+            html += `</select></div>`;
+            return html;
+        };
 
-  <footer class="site-footer">
-    <p>© 2025 Configurador PC.</p>
-  </footer>
+        /** Genera el HTML para la selección de modelos base. */
+        const createBaseModelCards = () => {
+            const container = document.getElementById('base-model-selection');
+            container.innerHTML = ''; // Limpiar contenido existente
 
-<script src="script.js"></script>
+            Object.values(baseModelsData).forEach(model => {
+                const card = document.createElement('div');
+                card.id = `card-${model.id}`;
+                card.className = `model-card p-5 rounded-xl border-2 border-gray-200 bg-white shadow-sm hover:border-indigo-400`;
+                card.onclick = () => selectBaseModel(model.id);
+
+                card.innerHTML = `
+                    <input type="radio" id="radio-${model.id}" name="base_model" value="${model.id}" class="hidden">
+                    <label for="radio-${model.id}" class="block cursor-pointer">
+                        <h3 class="text-xl font-bold text-primary">${model.name}</h3>
+                        <p class="text-3xl font-extrabold text-secondary mt-1">${formatPrice(model.basePrice)}</p>
+                        <p class="mt-2 text-sm text-gray-600">${model.description}</p>
+                        <div class="mt-3 text-sm font-medium text-accent">Clic para seleccionar</div>
+                    </label>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+        /** Maneja la selección de un modelo base. */
+        const selectBaseModel = (modelId) => {
+            selectedBaseModelId = modelId;
+            const model = baseModelsData[modelId];
+
+            // 1. Actualizar estilos de las cards
+            document.querySelectorAll('.model-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById(`card-${modelId}`).classList.add('selected');
+
+            // 2. Mostrar precio base
+            document.getElementById('base-price-display').textContent = formatPrice(model.basePrice);
+
+            // 3. (Re)generar y seleccionar componentes por defecto
+            renderComponentOptions(model.defaultComponents);
+            
+            // 4. Recalcular total
+            calculateTotal();
+        };
+
+        /** Renderiza los desplegables de componentes con las selecciones por defecto. */
+        const renderComponentOptions = (defaults) => {
+            const container = document.getElementById('component-options');
+            container.innerHTML = '';
+            
+            // Iterar sobre las claves de los componentes
+            Object.keys(componentsData).forEach(key => {
+                const defaultOptionName = defaults[key];
+                const dropdownHtml = createComponentDropdown(key, componentsData[key], defaultOptionName);
+                container.innerHTML += dropdownHtml;
+            });
+        };
+
+        /** Calcula el precio total sumando base y opciones. */
+        const calculateTotal = () => {
+            const totalDisplay = document.getElementById('total-price-display');
+            const buyButton = document.getElementById('buy-button');
+            
+            if (!selectedBaseModelId) {
+                totalDisplay.textContent = formatPrice(0);
+                buyButton.disabled = true;
+                return;
+            }
+
+            let totalPrice = baseModelsData[selectedBaseModelId].basePrice;
+            let componentsSelected = true;
+
+            // Iterar sobre todos los dropdowns de componentes
+            Object.keys(componentsData).forEach(key => {
+                const selectElement = document.getElementById(key);
+                if (selectElement) {
+                    const selectedOption = selectElement.options[selectElement.selectedIndex];
+                    const componentPrice = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+                    totalPrice += componentPrice;
+                } else {
+                    // Si falta algún componente (no debería pasar tras la inicialización)
+                    componentsSelected = false;
+                }
+            });
+
+            // Actualizar la interfaz
+            totalDisplay.textContent = formatPrice(totalPrice);
+            buyButton.disabled = !componentsSelected; // Habilitar si todo está seleccionado
+        };
+
+        /** Simula el proceso de compra y muestra el modal. */
+        const handleBuy = () => {
+            const totalPrice = document.getElementById('total-price-display').textContent;
+            document.getElementById('final-price').textContent = totalPrice;
+            document.getElementById('message-box').classList.remove('hidden');
+        };
+
+        /** Cierra el modal de mensaje. */
+        const closeMessageBox = () => {
+            document.getElementById('message-box').classList.add('hidden');
+        };
+
+        // --- INICIALIZACIÓN ---
+        window.onload = () => {
+            // 1. Crear las cards de modelos base
+            createBaseModelCards();
+
+            // 2. Asignar evento al botón de compra
+            document.getElementById('buy-button').addEventListener('click', handleBuy);
+            
+            // 3. Inicializar sin modelo seleccionado
+            document.getElementById('base-price-display').textContent = formatPrice(0);
+            document.getElementById('total-price-display').textContent = formatPrice(0);
+            document.getElementById('component-options').innerHTML = '<p class="text-center text-gray-500 py-10">Selecciona un Modelo Base para empezar a personalizar.</p>';
+        };
+    </script>
+
 </body>
 </html>
