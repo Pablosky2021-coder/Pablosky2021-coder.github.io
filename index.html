@@ -51,10 +51,16 @@
 <body class="antialiased p-4 md:p-8">
 
     <div class="max-w-6xl mx-auto">
-        <!-- Encabezado / Logo -->
+        <!-- Encabezado / Logo - IMAGEN ACTUALIZADA -->
         <header class="text-center mb-10 p-6 rounded-xl bg-white shadow-lg">
             <h1 class="text-5xl font-extrabold text-primary tracking-tight">
-                🍐 Pear Republic
+                <!-- Se reemplaza el emoji por la imagen del usuario.
+                     Añadimos un 'onerror' con una URL de placeholder por si la imagen no está en la carpeta. -->
+                <img src="PearRepublic.png" 
+                     alt="Logo de Pear Republic" 
+                     class="h-12 w-auto inline-block align-middle mr-3" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/100x48/10B981/ffffff?text=Pear'"> 
+                Pear Republic
             </h1>
             <p class="mt-2 text-xl text-gray-500">Configura el ordenador perfecto para tu flujo de trabajo de vídeo.</p>
         </header>
