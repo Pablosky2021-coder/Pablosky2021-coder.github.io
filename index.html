@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pear Republic - Configurador de Ordenadores para Edición de Vídeo</title>
-    <!-- Carga de Tailwind CSS -->
+    <title>Pear Republic - Custom PC Builder for Video Editing</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* Estilos personalizados para el tema */
+        /* Custom styles for the theme */
         :root {
-            --color-primary: #1F2937; /* Gris Oscuro */
-            --color-secondary: #4F46E5; /* Índigo */
-            --color-accent: #10B981; /* Esmeralda */
+            --color-primary: #1F2937; /* Dark Gray */
+            --color-secondary: #4F46E5; /* Indigo */
+            --color-accent: #10B981; /* Emerald */
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -29,7 +29,7 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4);
         }
-        /* Estilo para los cards de selección de modelo */
+        /* Style for model selection cards */
         .model-card {
             transition: all 0.2s ease;
             cursor: pointer;
@@ -51,32 +51,31 @@
 <body class="antialiased p-4 md:p-8">
 
     <div class="max-w-6xl mx-auto">
-        <!-- Encabezado / Logo - IMAGEN ACTUALIZADA -->
+        <!-- Header / Logo - UPDATED IMAGE -->
         <header class="text-center mb-10 p-6 rounded-xl bg-white shadow-lg">
             <h1 class="text-5xl font-extrabold text-primary tracking-tight">
-                <!-- Se reemplaza el emoji por la imagen del usuario.
-                     Añadimos un 'onerror' con una URL de placeholder por si la imagen no está en la carpeta. -->
+                <!-- Image for the logo. The onerror provides a placeholder if the image file is missing. -->
                 <img src="PearRepublic.png" 
-                     alt="Logo de Pear Republic" 
+                     alt="Pear Republic Logo" 
                      class="h-12 w-auto inline-block align-middle mr-3" 
                      onerror="this.onerror=null; this.src='https://placehold.co/100x48/10B981/ffffff?text=Pear'"> 
                 Pear Republic
             </h1>
-            <p class="mt-2 text-xl text-gray-500">Configura el ordenador perfecto para tu flujo de trabajo de vídeo.</p>
+            <p class="mt-2 text-xl text-gray-500">Configure the perfect computer for your video workflow.</p>
         </header>
 
         <main id="configurator" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <!-- Columna 1: Selección de Modelo Base -->
+            <!-- Column 1: Base Model Selection -->
             <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xl h-fit sticky top-4">
-                <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">1. Elige tu Modelo Base</h2>
+                <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">1. Choose Your Base Model</h2>
 
                 <div class="space-y-4" id="base-model-selection">
-                    <!-- Cards de modelos base se insertarán aquí por JS -->
+                    <!-- Base model cards will be inserted here by JS -->
                 </div>
 
                 <div class="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
-                    <p class="font-semibold text-lg text-primary">Precio Base:</p>
+                    <p class="font-semibold text-lg text-primary">Base Price:</p>
                     <p id="base-price-display" class="text-2xl font-extrabold text-secondary mt-1">
                         €0
                     </p>
@@ -84,44 +83,44 @@
             </div>
 
 
-            <!-- Columna 2: Personalización de Componentes -->
+            <!-- Column 2: Component Customization -->
             <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-xl">
-                <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">2. Personaliza tus Componentes</h2>
+                <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">2. Customize Your Components</h2>
 
                 <div id="component-options" class="space-y-6">
-                    <!-- Desplegables de componentes se insertarán aquí por JS -->
+                    <!-- Component dropdowns will be inserted here by JS -->
                 </div>
 
-                <!-- Botón de Compra y Resumen Final -->
+                <!-- Buy Button and Final Summary -->
                 <div class="mt-10 pt-6 border-t-2 border-dashed border-gray-300">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <p class="font-semibold text-2xl text-primary">Precio Total Estimado:</p>
+                            <p class="font-semibold text-2xl text-primary">Estimated Total Price:</p>
                             <p id="total-price-display" class="text-5xl font-extrabold text-accent mt-1">
                                 €0
                             </p>
-                            <p class="text-sm text-gray-500 mt-1">Impuestos y envío no incluidos.</p>
+                            <p class="text-sm text-gray-500 mt-1">Taxes and shipping not included.</p>
                         </div>
                         
                         <button id="buy-button" 
                                 class="btn-buy bg-secondary text-white py-3 px-8 rounded-full font-bold uppercase text-xl shadow-lg hover:bg-indigo-700 disabled:opacity-50"
                                 disabled>
-                            Comprar Configuración
+                            Buy Configuration
                         </button>
                     </div>
 
-                    <!-- Mensaje de confirmación/alerta (modal simulado) -->
+                    <!-- Confirmation/Alert Message (Simulated Modal) -->
                     <div id="message-box" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
                         <div class="bg-white p-8 rounded-lg shadow-2xl max-w-sm text-center">
                             <svg class="mx-auto h-12 w-12 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <h3 class="mt-2 text-xl font-bold text-primary">¡Configuración Enviada!</h3>
+                            <h3 class="mt-2 text-xl font-bold text-primary">Configuration Sent!</h3>
                             <p class="mt-1 text-gray-600">
-                                Tu pedido ha sido registrado. Precio total: <span id="final-price" class="font-extrabold text-secondary"></span>.
+                                Your order has been registered. Total price: <span id="final-price" class="font-extrabold text-secondary"></span>.
                             </p>
                             <button onclick="closeMessageBox()" class="mt-4 bg-secondary text-white py-2 px-4 rounded-full hover:bg-indigo-700">
-                                Cerrar
+                                Close
                             </button>
                         </div>
                     </div>
@@ -132,11 +131,11 @@
     </div>
 
     <script>
-        // --- DATA DE COMPONENTES Y MODELOS BASE ---
+        // --- COMPONENT AND BASE MODEL DATA ---
         const componentsData = {
             'CPU': [
                 { name: "Intel Core i7-14700K (Ideal 4K)", price: 400 },
-                { name: "Intel Core i9-14900K (Máximo 8K)", price: 650 },
+                { name: "Intel Core i9-14900K (Maximum 8K)", price: 650 },
                 { name: "AMD Ryzen 9 7950X", price: 550 }
             ],
             'GPU': [
@@ -165,7 +164,7 @@
                 id: 'video_editor',
                 name: "Editor Pro (4K)",
                 basePrice: 1500,
-                description: "Configuración optimizada para edición 4K y diseño gráfico. Gran equilibrio entre coste y rendimiento.",
+                description: "Optimized configuration for 4K editing and graphic design. Great balance between cost and performance.",
                 defaultComponents: {
                     CPU: "Intel Core i7-14700K (Ideal 4K)",
                     GPU: "NVIDIA GeForce RTX 4070 (12GB)",
@@ -178,9 +177,9 @@
                 id: 'color_grader',
                 name: "Color Master (8K)",
                 basePrice: 2200,
-                description: "Máximo rendimiento para corrección de color, VFX y renderizado 8K. Sin compromisos de potencia.",
+                description: "Maximum performance for color correction, VFX, and 8K rendering. No compromises on power.",
                 defaultComponents: {
-                    CPU: "Intel Core i9-14900K (Máximo 8K)",
+                    CPU: "Intel Core i9-14900K (Maximum 8K)",
                     GPU: "NVIDIA GeForce RTX 4080 (16GB)",
                     RAM: "64GB DDR5 6000MHz",
                     SSD: "2TB NVMe Gen4",
@@ -191,14 +190,14 @@
 
         let selectedBaseModelId = null;
 
-        // --- FUNCIONES DE UTILIDAD ---
+        // --- UTILITY FUNCTIONS ---
 
-        /** Formatea un número a moneda EUR. */
+        /** Formats a number to EUR currency. */
         const formatPrice = (price) => {
-            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(price);
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(price);
         };
 
-        /** Genera el HTML para las opciones de un componente (dropdown). */
+        /** Generates HTML for component options (dropdown). */
         const createComponentDropdown = (componentKey, options, defaultSelection) => {
             let html = `
                 <div class="component-group p-4 border rounded-lg bg-gray-50">
@@ -224,10 +223,10 @@
             return html;
         };
 
-        /** Genera el HTML para la selección de modelos base. */
+        /** Generates HTML for base model selection. */
         const createBaseModelCards = () => {
             const container = document.getElementById('base-model-selection');
-            container.innerHTML = ''; // Limpiar contenido existente
+            container.innerHTML = ''; // Clear existing content
 
             Object.values(baseModelsData).forEach(model => {
                 const card = document.createElement('div');
@@ -241,38 +240,38 @@
                         <h3 class="text-xl font-bold text-primary">${model.name}</h3>
                         <p class="text-3xl font-extrabold text-secondary mt-1">${formatPrice(model.basePrice)}</p>
                         <p class="mt-2 text-sm text-gray-600">${model.description}</p>
-                        <div class="mt-3 text-sm font-medium text-accent">Clic para seleccionar</div>
+                        <div class="mt-3 text-sm font-medium text-accent">Click to select</div>
                     </label>
                 `;
                 container.appendChild(card);
             });
         };
 
-        /** Maneja la selección de un modelo base. */
+        /** Handles the selection of a base model. */
         const selectBaseModel = (modelId) => {
             selectedBaseModelId = modelId;
             const model = baseModelsData[modelId];
 
-            // 1. Actualizar estilos de las cards
+            // 1. Update card styles
             document.querySelectorAll('.model-card').forEach(card => card.classList.remove('selected'));
             document.getElementById(`card-${modelId}`).classList.add('selected');
 
-            // 2. Mostrar precio base
+            // 2. Display base price
             document.getElementById('base-price-display').textContent = formatPrice(model.basePrice);
 
-            // 3. (Re)generar y seleccionar componentes por defecto
+            // 3. (Re)generate and set default components
             renderComponentOptions(model.defaultComponents);
             
-            // 4. Recalcular total
+            // 4. Recalculate total
             calculateTotal();
         };
 
-        /** Renderiza los desplegables de componentes con las selecciones por defecto. */
+        /** Renders component dropdowns with default selections. */
         const renderComponentOptions = (defaults) => {
             const container = document.getElementById('component-options');
             container.innerHTML = '';
             
-            // Iterar sobre las claves de los componentes
+            // Iterate over component keys
             Object.keys(componentsData).forEach(key => {
                 const defaultOptionName = defaults[key];
                 const dropdownHtml = createComponentDropdown(key, componentsData[key], defaultOptionName);
@@ -280,7 +279,7 @@
             });
         };
 
-        /** Calcula el precio total sumando base y opciones. */
+        /** Calculates the total price by summing base and options. */
         const calculateTotal = () => {
             const totalDisplay = document.getElementById('total-price-display');
             const buyButton = document.getElementById('buy-button');
@@ -294,7 +293,7 @@
             let totalPrice = baseModelsData[selectedBaseModelId].basePrice;
             let componentsSelected = true;
 
-            // Iterar sobre todos los dropdowns de componentes
+            // Iterate over all component dropdowns
             Object.keys(componentsData).forEach(key => {
                 const selectElement = document.getElementById(key);
                 if (selectElement) {
@@ -302,40 +301,40 @@
                     const componentPrice = parseFloat(selectedOption.getAttribute('data-price')) || 0;
                     totalPrice += componentPrice;
                 } else {
-                    // Si falta algún componente (no debería pasar tras la inicialización)
+                    // If any component is missing (should not happen after initialization)
                     componentsSelected = false;
                 }
             });
 
-            // Actualizar la interfaz
+            // Update the interface
             totalDisplay.textContent = formatPrice(totalPrice);
-            buyButton.disabled = !componentsSelected; // Habilitar si todo está seleccionado
+            buyButton.disabled = !componentsSelected; // Enable if everything is selected
         };
 
-        /** Simula el proceso de compra y muestra el modal. */
+        /** Simulates the purchase process and displays the modal. */
         const handleBuy = () => {
             const totalPrice = document.getElementById('total-price-display').textContent;
             document.getElementById('final-price').textContent = totalPrice;
             document.getElementById('message-box').classList.remove('hidden');
         };
 
-        /** Cierra el modal de mensaje. */
+        /** Closes the message modal. */
         const closeMessageBox = () => {
             document.getElementById('message-box').classList.add('hidden');
         };
 
-        // --- INICIALIZACIÓN ---
+        // --- INITIALIZATION ---
         window.onload = () => {
-            // 1. Crear las cards de modelos base
+            // 1. Create base model cards
             createBaseModelCards();
 
-            // 2. Asignar evento al botón de compra
+            // 2. Assign event to the buy button
             document.getElementById('buy-button').addEventListener('click', handleBuy);
             
-            // 3. Inicializar sin modelo seleccionado
+            // 3. Initialize without a selected model
             document.getElementById('base-price-display').textContent = formatPrice(0);
             document.getElementById('total-price-display').textContent = formatPrice(0);
-            document.getElementById('component-options').innerHTML = '<p class="text-center text-gray-500 py-10">Selecciona un Modelo Base para empezar a personalizar.</p>';
+            document.getElementById('component-options').innerHTML = '<p class="text-center text-gray-500 py-10">Select a Base Model to start customizing.</p>';
         };
     </script>
 
