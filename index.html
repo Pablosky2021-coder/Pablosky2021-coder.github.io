@@ -46,92 +46,230 @@
         select, input[type="radio"] {
             cursor: pointer;
         }
+        .nav-link.active {
+            color: var(--color-secondary);
+            border-bottom: 3px solid var(--color-secondary);
+        }
+        /* Ensure configurator sticky element works within its container */
+        #configurator-section .lg\:sticky {
+            top: 6rem; /* Adjusted for navbar height */
+        }
     </style>
 </head>
-<body class="antialiased p-4 md:p-8">
+<body class="antialiased">
 
-    <div class="max-w-6xl mx-auto">
-        <!-- Header / Logo - IMAGE HEIGHT INCREASED TO h-20 -->
-        <header class="text-center mb-10 p-6 rounded-xl bg-white shadow-lg">
-            <h1 class="text-5xl font-extrabold text-primary tracking-tight">
-                <!-- Image height changed from h-12 to h-20 -->
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-10 bg-white shadow-lg p-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <!-- Logo/Brand Section -->
+            <div class="flex items-center">
                 <img src="unnamed.png" 
                      alt="Pear Republic Logo" 
-                     class="h-20 w-auto inline-block align-middle mr-3" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/100x48/10B981/ffffff?text=Logo'"> 
-                Pear Republic
-            </h1>
-            <p class="mt-2 text-xl text-gray-500">Configure the perfect computer for your video workflow.</p>
-        </header>
-
-        <main id="configurator" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-            <!-- Column 1: Base Model Selection -->
-            <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xl h-fit sticky top-4">
-                <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">1. Choose Your Base Model</h2>
-
-                <div class="space-y-4" id="base-model-selection">
-                    <!-- Base model cards will be inserted here by JS -->
-                </div>
-
-                <div class="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
-                    <p class="font-semibold text-lg text-primary">Base Price:</p>
-                    <p id="base-price-display" class="text-2xl font-extrabold text-secondary mt-1">
-                        €0
-                    </p>
-                </div>
+                     class="h-10 w-auto" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/100x40/10B981/ffffff?text=Logo'"> 
+                <span class="text-2xl font-extrabold text-primary ml-2">Pear Republic</span>
             </div>
 
+            <!-- Navigation Links -->
+            <div class="flex space-x-6 text-lg font-semibold">
+                <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary active" 
+                   data-target="home-section" onclick="showSection(event, 'home-section')">Home</a>
+                <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary" 
+                   data-target="configurator-section" onclick="showSection(event, 'configurator-section')">Configurator</a>
+                <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary" 
+                   data-target="software-section" onclick="showSection(event, 'software-section')">Software</a>
+            </div>
+        </div>
+    </nav>
 
-            <!-- Column 2: Component Customization -->
-            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-xl">
-                <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">2. Customize Your Components</h2>
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
 
-                <div id="component-options" class="space-y-6">
-                    <!-- Component dropdowns will be inserted here by JS -->
+        <!-- 1. HOME/ABOUT US SECTION -->
+        <section id="home-section" class="pt-10">
+            <header class="text-center mb-12 p-6 rounded-xl bg-white shadow-lg">
+                <h1 class="text-5xl font-extrabold text-primary tracking-tight mb-4">
+                    The Ultimate Power for Video Creators
+                </h1>
+                <p class="mt-2 text-xl text-gray-500 max-w-3xl mx-auto">
+                    Welcome to Pear Republic, where we build and customize the world's best PCs dedicated to high-fidelity video editing, motion graphics, and rendering.
+                </p>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-xl">
+                    <h2 class="text-3xl font-bold text-secondary mb-4">Maximum Quality, No Compromise</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        We understand that video professionals demand speed, reliability, and precision. Our systems are engineered from the ground up to handle the heaviest workloads, including 4K, 8K, and high-bitrate codecs. We focus on balanced component selection to eliminate bottlenecks and provide you with seamless playback and rapid rendering times. Stop waiting for your machine and start creating.
+                    </p>
+                    <ul class="mt-4 space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 text-accent mr-2 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                            <span class="font-semibold">8K Ready:</span> Optimized for high-resolution post-production.
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 text-accent mr-2 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                            <span class="font-semibold">Maximum Customization:</span> Tailor every component to your specific software and workflow.
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 text-accent mr-2 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                            <span class="font-semibold">Professional Support:</span> Dedicated help for video editing environments.
+                        </li>
+                    </ul>
                 </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-xl flex items-center justify-center">
+                    <!-- Updated image source from the search result -->
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/11853063625824554484" 
+                         alt="Persona trabajando en software de edición de video con múltiples monitores" 
+                         class="rounded-lg w-full h-auto max-h-96 object-cover">
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="showSection(null, 'configurator-section')" class="btn-buy bg-accent text-white py-3 px-8 rounded-full font-bold uppercase text-xl shadow-lg hover:bg-emerald-600">
+                    Start Building Your PC
+                </button>
+            </div>
+        </section>
 
-                <!-- Buy Button and Final Summary -->
-                <div class="mt-10 pt-6 border-t-2 border-dashed border-gray-300">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="mb-4 md:mb-0">
-                            <p class="font-semibold text-2xl text-primary">Estimated Total Price:</p>
-                            <p id="total-price-display" class="text-5xl font-extrabold text-accent mt-1">
-                                €0
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1">Shipping not included.</p>
-                        </div>
-                        
-                        <button id="buy-button" 
-                                class="btn-buy bg-secondary text-white py-3 px-8 rounded-full font-bold uppercase text-xl shadow-lg hover:bg-indigo-700 disabled:opacity-50"
-                                disabled>
-                            Buy Configuration
-                        </button>
+        <!-- 2. CONFIGURATOR SECTION (Original content, initially hidden) -->
+        <section id="configurator-section" class="hidden">
+            <main id="configurator" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Column 1: Base Model Selection -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xl h-fit lg:sticky top-24">
+                    <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">1. Choose Your Base Model</h2>
+
+                    <div class="space-y-4" id="base-model-selection">
+                        <!-- Base model cards will be inserted here by JS -->
                     </div>
 
-                    <!-- Confirmation/Alert Message (Simulated Modal) -->
-                    <div id="message-box" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
-                        <div class="bg-white p-8 rounded-lg shadow-2xl max-w-sm text-center">
-                            <svg class="mx-auto h-12 w-12 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <h3 class="mt-2 text-xl font-bold text-primary">Configuration Sent!</h3>
-                            <p class="mt-1 text-gray-600">
-                                Your order has been registered. Total price: <span id="final-price" class="font-extrabold text-secondary"></span>.
-                            </p>
-                            <button onclick="closeMessageBox()" class="mt-4 bg-secondary text-white py-2 px-4 rounded-full hover:bg-indigo-700">
-                                Close
+                    <div class="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
+                        <p class="font-semibold text-lg text-primary">Base Price:</p>
+                        <p id="base-price-display" class="text-2xl font-extrabold text-secondary mt-1">
+                            €0
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- Column 2: Component Customization -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-xl">
+                    <h2 class="text-2xl font-bold mb-6 border-b pb-3 text-primary">2. Customize Your Components</h2>
+
+                    <div id="component-options" class="space-y-6">
+                        <!-- Component dropdowns will be inserted here by JS -->
+                    </div>
+
+                    <!-- Buy Button and Final Summary -->
+                    <div class="mt-10 pt-6 border-t-2 border-dashed border-gray-300">
+                        <div class="flex flex-col md:flex-row justify-between items-center">
+                            <div class="mb-4 md:mb-0">
+                                <p class="font-semibold text-2xl text-primary">Estimated Total Price:</p>
+                                <p id="total-price-display" class="text-5xl font-extrabold text-accent mt-1">
+                                    €0
+                                </p>
+                                <p class="text-sm text-gray-500 mt-1">Shipping not included.</p>
+                            </div>
+                            
+                            <button id="buy-button" 
+                                    class="btn-buy bg-secondary text-white py-3 px-8 rounded-full font-bold uppercase text-xl shadow-lg hover:bg-indigo-700 disabled:opacity-50"
+                                    disabled>
+                                Buy Configuration
                             </button>
                         </div>
+
+                        <!-- Confirmation/Alert Message (Simulated Modal) -->
+                        <div id="message-box" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+                            <div class="bg-white p-8 rounded-lg shadow-2xl max-w-sm text-center">
+                                <svg class="mx-auto h-12 w-12 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="mt-2 text-xl font-bold text-primary">Configuration Sent!</h3>
+                                <p class="mt-1 text-gray-600">
+                                    Your order has been registered. Total price: <span id="final-price" class="font-extrabold text-secondary"></span>.
+                                </p>
+                                <button onclick="closeMessageBox()" class="mt-4 bg-secondary text-white py-2 px-4 rounded-full hover:bg-indigo-700">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </main>
-    </div>
+            </main>
+        </section>
+
+        <!-- 3. SOFTWARE SECTION (New section, initially hidden) -->
+        <section id="software-section" class="hidden pt-10">
+            <div class="bg-white p-8 rounded-xl shadow-xl">
+                <h2 class="text-3xl font-bold text-primary mb-6 border-b pb-3">Software Compatibility & Tools</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    Here are the essential professional tools optimized for your Pear Republic workstation.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- Card 1: Adobe Creative Cloud Pro -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md">
+                        <!-- INSERTED IMAGE HERE -->
+                        <img src="Adobe_Creative_Cloud.png" 
+                             alt="Adobe Creative Cloud Logo" 
+                             class="w-full h-auto rounded-lg mb-4 object-cover" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x150/4F46E5/ffffff?text=Adobe+CC+Logo'"> 
+
+                        <h3 class="text-2xl font-bold text-secondary">Adobe Creative Cloud Pro</h3>
+                        <p class="text-gray-700 mt-2">The essential suite for video editing, motion graphics, and visual effects, including Premiere Pro, After Effects, and Photoshop. Designed for professional quality, it uses your PC's power to the maximum.</p>
+                        <a href="https://www.adobe.com/es/creativecloud/pro.html" target="_blank" class="mt-4 inline-block bg-accent text-white font-semibold py-2 px-4 rounded-full hover:bg-emerald-600 transition duration-150 text-sm">
+                            View Adobe Plans
+                        </a>
+                    </div>
+
+                    <!-- Card 2: Dropbox 15 TB -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md">
+                        <!-- INSERTED IMAGE HERE -->
+                        <img src="dropbox.png" 
+                             alt="Dropbox 15 TB Storage" 
+                             class="w-full h-auto rounded-lg mb-4 object-cover" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x150/4F46E5/ffffff?text=Dropbox+Logo'"> 
+                        
+                        <h3 class="text-2xl font-bold text-secondary">Dropbox 15 TB</h3>
+                        <p class="text-gray-700 mt-2">Massive, secure cloud storage for backing up and sharing your large video projects and raw footage with collaborators easily and quickly. Never worry about losing your work!</p>
+                        <a href="https://www.dropbox.com/plans" target="_blank" class="mt-4 inline-block bg-accent text-white font-semibold py-2 px-4 rounded-full hover:bg-emerald-600 transition duration-150 text-sm">
+                            Explore Storage Plans
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div> <!-- end of max-w-6xl container -->
 
     <script>
-        // --- COMPONENT AND BASE MODEL DATA (PSU REMOVED) ---
+        // --- NAVIGATION LOGIC ---
+
+        /** Shows the selected section and updates the active link. */
+        const showSection = (event, sectionId) => {
+            if (event) event.preventDefault();
+            
+            // 1. Hide all sections
+            document.getElementById('home-section').classList.add('hidden');
+            document.getElementById('configurator-section').classList.add('hidden');
+            document.getElementById('software-section').classList.add('hidden');
+
+            // 2. Show the target section
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            // 3. Update active link in navbar
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.nav-link[data-target="${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        };
+
+        // --- CONFIGURATOR DATA (PSU REMOVED) ---
         const componentsData = {
             'CPU': [
                 { name: "Intel Core i7-14700K (Ideal 4K)", price: 400 },
@@ -153,7 +291,6 @@
                 { name: "2TB NVMe Gen4", price: 150 },
                 { name: "4TB NVMe Gen4", price: 300 }
             ]
-            // PSU component removed from data
         };
 
         const baseModelsData = {
@@ -167,7 +304,6 @@
                     GPU: "NVIDIA GeForce RTX 4070 (12GB)",
                     RAM: "32GB DDR5 5600MHz",
                     SSD: "1TB NVMe Gen4"
-                    // PSU removed
                 }
             },
             'color_grader': {
@@ -180,7 +316,6 @@
                     GPU: "NVIDIA GeForce RTX 4080 (16GB)",
                     RAM: "64GB DDR5 6000MHz",
                     SSD: "2TB NVme Gen4"
-                    // PSU removed
                 }
             }
         };
@@ -223,7 +358,7 @@
         /** Generates HTML for base model selection. */
         const createBaseModelCards = () => {
             const container = document.getElementById('base-model-selection');
-            container.innerHTML = ''; // Clear existing content
+            container.innerHTML = ''; 
 
             Object.values(baseModelsData).forEach(model => {
                 const card = document.createElement('div');
@@ -249,17 +384,13 @@
             selectedBaseModelId = modelId;
             const model = baseModelsData[modelId];
 
-            // 1. Update card styles
             document.querySelectorAll('.model-card').forEach(card => card.classList.remove('selected'));
             document.getElementById(`card-${modelId}`).classList.add('selected');
 
-            // 2. Display base price
             document.getElementById('base-price-display').textContent = formatPrice(model.basePrice);
 
-            // 3. (Re)generate and set default components
             renderComponentOptions(model.defaultComponents);
             
-            // 4. Recalculate total
             calculateTotal();
         };
 
@@ -268,7 +399,6 @@
             const container = document.getElementById('component-options');
             container.innerHTML = '';
             
-            // Iterate over component keys
             Object.keys(componentsData).forEach(key => {
                 const defaultOptionName = defaults[key];
                 const dropdownHtml = createComponentDropdown(key, componentsData[key], defaultOptionName);
@@ -290,7 +420,6 @@
             let totalPrice = baseModelsData[selectedBaseModelId].basePrice;
             let componentsSelected = true;
 
-            // Iterate over all component dropdowns
             Object.keys(componentsData).forEach(key => {
                 const selectElement = document.getElementById(key);
                 if (selectElement) {
@@ -298,14 +427,12 @@
                     const componentPrice = parseFloat(selectedOption.getAttribute('data-price')) || 0;
                     totalPrice += componentPrice;
                 } else {
-                    // If any component is missing (should not happen after initialization)
                     componentsSelected = false;
                 }
             });
 
-            // Update the interface
             totalDisplay.textContent = formatPrice(totalPrice);
-            buyButton.disabled = !componentsSelected; // Enable if everything is selected
+            buyButton.disabled = !componentsSelected; 
         };
 
         /** Simulates the purchase process and displays the modal. */
@@ -322,16 +449,19 @@
 
         // --- INITIALIZATION ---
         window.onload = () => {
-            // 1. Create base model cards
+            // 1. Initialize configurator elements
             createBaseModelCards();
 
             // 2. Assign event to the buy button
             document.getElementById('buy-button').addEventListener('click', handleBuy);
             
-            // 3. Initialize without a selected model
+            // 3. Initialize configurator display state
             document.getElementById('base-price-display').textContent = formatPrice(0);
             document.getElementById('total-price-display').textContent = formatPrice(0);
             document.getElementById('component-options').innerHTML = '<p class="text-center text-gray-500 py-10">Select a Base Model to start customizing.</p>';
+
+            // 4. Ensure the Home section is visible on load and others are hidden
+            showSection(null, 'home-section');
         };
     </script>
 
