@@ -78,6 +78,9 @@
                    data-target="configurator-section" onclick="showSection(event, 'configurator-section')">Configurator</a>
                 <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary" 
                    data-target="software-section" onclick="showSection(event, 'software-section')">Software</a>
+                <!-- PERIPHERALS LINK -->
+                <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary" 
+                   data-target="peripherals-section" onclick="showSection(event, 'peripherals-section')">Peripherals</a>
             </div>
         </div>
     </nav>
@@ -118,9 +121,9 @@
                 </div>
                 
                 <div class="bg-white p-6 rounded-xl shadow-xl flex items-center justify-center">
-                    <!-- Updated image source from the search result -->
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/11853063625824554484" 
-                         alt="Persona trabajando en software de edición de video con múltiples monitores" 
+                    <!-- IMAGE REPLACED WITH THE UPLOADED FILE -->
+                    <img src="editor-videos.jpg" 
+                         alt="Two people working together on a computer with multiple monitors showing video editing software." 
                          class="rounded-lg w-full h-auto max-h-96 object-cover">
                 </div>
             </div>
@@ -220,7 +223,8 @@
 
                         <h3 class="text-2xl font-bold text-secondary">Adobe Creative Cloud Pro</h3>
                         <p class="text-gray-700 mt-2">The essential suite for video editing, motion graphics, and visual effects, including Premiere Pro, After Effects, and Photoshop. Designed for professional quality, it uses your PC's power to the maximum.</p>
-                        <a href="https://www.adobe.com/es/creativecloud/pro.html" target="_blank" class="mt-4 inline-block bg-accent text-white font-semibold py-2 px-4 rounded-full hover:bg-emerald-600 transition duration-150 text-sm">
+                        <!-- CLASS CHANGED: bg-accent -> bg-emerald-500 | hover:bg-emerald-600 (no functional change, but ensures visible green) -->
+                        <a href="https://www.adobe.com/es/creativecloud/pro.html" target="_blank" class="mt-4 inline-block bg-emerald-500 text-white font-semibold py-2 px-4 rounded-full hover:bg-emerald-600 transition duration-150 text-sm">
                             View Adobe Plans
                         </a>
                     </div>
@@ -235,9 +239,57 @@
                         
                         <h3 class="text-2xl font-bold text-secondary">Dropbox 15 TB</h3>
                         <p class="text-gray-700 mt-2">Massive, secure cloud storage for backing up and sharing your large video projects and raw footage with collaborators easily and quickly. Never worry about losing your work!</p>
-                        <a href="https://www.dropbox.com/plans" target="_blank" class="mt-4 inline-block bg-accent text-white font-semibold py-2 px-4 rounded-full hover:bg-emerald-600 transition duration-150 text-sm">
+                        <!-- CLASS CHANGED: bg-accent -> bg-emerald-500 | hover:bg-emerald-600 (no functional change, but ensures visible green) -->
+                        <a href="https://www.dropbox.com/plans" target="_blank" class="mt-4 inline-block bg-emerald-500 text-white font-semibold py-2 px-4 rounded-full hover:bg-emerald-600 transition duration-150 text-sm">
                             Explore Storage Plans
                         </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. PERIPHERALS SECTION (NEW, IN ENGLISH) -->
+        <section id="peripherals-section" class="hidden pt-10">
+            <div class="bg-white p-8 rounded-xl shadow-xl">
+                <h2 class="text-3xl font-bold text-primary mb-6 border-b pb-3">Essential Peripherals for Video Editing</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    A great PC needs the best tools to complete your professional setup. We recommend these high-quality peripherals for the best video editing experience.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    
+                    <!-- Card 1: Monitor -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md">
+                        <h3 class="text-2xl font-bold text-secondary">Professional Color Monitor</h3>
+                        <p class="text-gray-700 mt-2">
+                            A minimum 27-inch 4K monitor with 10-bit color depth (or 100% DCI-P3 coverage) is essential for accurate color grading and final look consistency.
+                        </p>
+                        <img src="https://placehold.co/400x250/1F2937/ffffff?text=4K+Monitor" 
+                             alt="4K Professional Monitor" 
+                             class="w-full h-auto rounded-lg mt-4 object-cover">
+                    </div>
+
+                    <!-- Card 2: Mouse/Tablet -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md">
+                        <h3 class="text-2xl font-bold text-secondary">High-Precision Mouse & Tablet</h3>
+                        <p class="text-gray-700 mt-2">
+                            A weighted, high DPI mouse offers precise control for frame-accurate editing. A graphics tablet is perfect for detailed color correction and mask work.
+                        </p>
+                        <img src="https://placehold.co/400x250/1F2937/ffffff?text=Mouse+%26+Tablet" 
+                             alt="Precision Mouse and Graphic Tablet" 
+                             class="w-full h-auto rounded-lg mt-4 object-cover">
+                    </div>
+
+                    <!-- Card 3: Storage -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md">
+                        <h3 class="text-2xl font-bold text-secondary">External Backup Storage (RAID)</h3>
+                        <p class="text-gray-700 mt-2">
+                            Fast external RAID storage (Thunderbolt/USB 4) is critical for project archiving and local backup, ensuring data safety and rapid file access.
+                        </p>
+                        <img src="https://placehold.co/400x250/1F2937/ffffff?text=RAID+Storage" 
+                             alt="External RAID Drive" 
+                             class="w-full h-auto rounded-lg mt-4 object-cover">
                     </div>
 
                 </div>
@@ -257,6 +309,8 @@
             document.getElementById('home-section').classList.add('hidden');
             document.getElementById('configurator-section').classList.add('hidden');
             document.getElementById('software-section').classList.add('hidden');
+            // NEW: Hide Peripherals section
+            document.getElementById('peripherals-section').classList.add('hidden'); 
 
             // 2. Show the target section
             document.getElementById(sectionId).classList.remove('hidden');
