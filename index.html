@@ -51,13 +51,13 @@
 <body class="antialiased p-4 md:p-8">
 
     <div class="max-w-6xl mx-auto">
-        <!-- Header / Logo - UPDATED IMAGE SOURCE -->
+        <!-- Header / Logo - IMAGE HEIGHT INCREASED TO h-20 -->
         <header class="text-center mb-10 p-6 rounded-xl bg-white shadow-lg">
             <h1 class="text-5xl font-extrabold text-primary tracking-tight">
-                <!-- Image source changed to the new file: unnamed.png -->
+                <!-- Image height changed from h-12 to h-20 -->
                 <img src="unnamed.png" 
                      alt="Pear Republic Logo" 
-                     class="h-12 w-auto inline-block align-middle mr-3" 
+                     class="h-20 w-auto inline-block align-middle mr-3" 
                      onerror="this.onerror=null; this.src='https://placehold.co/100x48/10B981/ffffff?text=Logo'"> 
                 Pear Republic
             </h1>
@@ -99,7 +99,6 @@
                             <p id="total-price-display" class="text-5xl font-extrabold text-accent mt-1">
                                 €0
                             </p>
-                            <!-- TEXT CHANGED HERE -->
                             <p class="text-sm text-gray-500 mt-1">Shipping not included.</p>
                         </div>
                         
@@ -132,59 +131,56 @@
     </div>
 
     <script>
-        // --- COMPONENT AND BASE MODEL DATA ---
+        // --- COMPONENT AND BASE MODEL DATA (PSU REMOVED) ---
         const componentsData = {
             'CPU': [
-                { name: "AMD Ryzen 5 7600", price: 200 },
-                { name: "AMD Ryzen 7 7700X ", price: 500 },
-                { name: "AMD Ryzen 9 7950X", price: 700 }
+                { name: "Intel Core i7-14700K (Ideal 4K)", price: 400 },
+                { name: "Intel Core i9-14900K (Maximum 8K)", price: 650 },
+                { name: "AMD Ryzen 9 7950X", price: 550 }
             ],
             'GPU': [
-                { name: "NVIDIA GeForce RTX 5060", price: 500 },
-                { name: "NVIDIA GeForce RTX 5070", price: 700 },
-                { name: "NVIDIA GeForce RTX 5090", price: 3400 }
+                { name: "NVIDIA GeForce RTX 4070 (12GB)", price: 600 },
+                { name: "NVIDIA GeForce RTX 4080 (16GB)", price: 1100 },
+                { name: "NVIDIA GeForce RTX 4090 (24GB)", price: 1700 }
             ],
             'RAM': [
-                { name: "32GB DDR5", price: 400 },
-                { name: "64GB DDR5", price: 500 },
-                { name: "128GB DDR5", price: 1200 }
+                { name: "32GB DDR5 5600MHz", price: 120 },
+                { name: "64GB DDR5 6000MHz", price: 250 },
+                { name: "128GB DDR5 6000MHz", price: 500 }
             ],
             'SSD': [
-                { name: "500GB NVMe Gen4", price: 90 },
-                { name: "1TB NVMe Gen4", price: 120 },
-                { name: "4TB NVMe Gen4", price: 260 }
-            ],
-            'PSU': [
-                { name: "850W Gold Modular", price: 100 },
-                { name: "1000W Platinum Modular", price: 150 }
+                { name: "1TB NVMe Gen4", price: 80 },
+                { name: "2TB NVMe Gen4", price: 150 },
+                { name: "4TB NVMe Gen4", price: 300 }
             ]
+            // PSU component removed from data
         };
 
         const baseModelsData = {
             'video_editor': {
                 id: 'video_editor',
-                name: "Editor Standard",
+                name: "Editor Pro (4K)",
                 basePrice: 1500,
-                description: "Optimized configuration for 4K editing. Great balance between cost and performance. Highly customizable",
+                description: "Optimized configuration for 4K editing and graphic design. Great balance between cost and performance.",
                 defaultComponents: {
-                    CPU: "AMD Ryzen 5 7600",
-                    GPU: "NVIDIA GeForce RTX 5060",
-                    RAM: "32GB DDR5",
-                    SSD: "1TB NVMe Gen4",
-                    PSU: "850W Gold Modular"
+                    CPU: "Intel Core i7-14700K (Ideal 4K)",
+                    GPU: "NVIDIA GeForce RTX 4070 (12GB)",
+                    RAM: "32GB DDR5 5600MHz",
+                    SSD: "1TB NVMe Gen4"
+                    // PSU removed
                 }
             },
             'color_grader': {
                 id: 'color_grader',
-                name: "Master Editor",
+                name: "Color Master (8K)",
                 basePrice: 2200,
-                description: "Premium at 8k editing and live-streaming. Two graphic cards. Highly customizable.",
+                description: "Maximum performance for color correction, VFX, and 8K rendering. No compromises on power.",
                 defaultComponents: {
-                    CPU: "AMD Ryzen 5 7600",
-                    GPU: "NVIDIA GeForce RTX 5060",
-                    RAM: "32GB DDR5",
-                    SSD: "1TB NVMe Gen4",
-                    PSU: "850W Gold Modular"
+                    CPU: "Intel Core i9-14900K (Maximum 8K)",
+                    GPU: "NVIDIA GeForce RTX 4080 (16GB)",
+                    RAM: "64GB DDR5 6000MHz",
+                    SSD: "2TB NVme Gen4"
+                    // PSU removed
                 }
             }
         };
