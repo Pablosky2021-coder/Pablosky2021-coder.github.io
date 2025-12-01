@@ -81,14 +81,19 @@
                 <!-- PERIPHERALS LINK -->
                 <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary" 
                    data-target="peripherals-section" onclick="showSection(event, 'peripherals-section')">Peripherals</a>
+                <!-- NUEVO ENLACE DE MERCHANDISING -->
+                <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary" 
+                   data-target="merchandising-section" onclick="showSection(event, 'merchandising-section')">Merchandising</a>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-6xl mx-auto p-4 md:p-8">
+    <!-- Se añade pt-24 (padding-top) a este contenedor principal para dejar espacio a la barra de navegación sticky -->
+    <div class="max-w-6xl mx-auto p-4 md:p-8 pt-24">
 
         <!-- 1. HOME/ABOUT US SECTION -->
-        <section id="home-section" class="pt-10">
+        <!-- Se elimina pt-10 de la sección, ya que ahora lo controla el div superior -->
+        <section id="home-section">
             <header class="text-center mb-12 p-6 rounded-xl bg-white shadow-lg">
                 <h1 class="text-5xl font-extrabold text-primary tracking-tight mb-4">
                     The Ultimate Power for Video Creators
@@ -188,11 +193,14 @@
                                 <svg class="mx-auto h-12 w-12 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <h3 class="mt-2 text-xl font-bold text-primary">Configuration Sent!</h3>
-                                <p class="mt-1 text-gray-600">
+                                <!-- Título dinámico -->
+                                <h3 id="message-box-title" class="mt-2 text-xl font-bold text-primary">Configuration Sent!</h3>
+                                <!-- Contenido dinámico -->
+                                <p id="message-box-body" class="mt-1 text-gray-600">
                                     Your order has been registered. Total price: <span id="final-price" class="font-extrabold text-secondary"></span>.
                                 </p>
-                                <button onclick="closeMessageBox()" class="mt-4 bg-secondary text-white py-2 px-4 rounded-full hover:bg-indigo-700">
+                                <!-- ID añadido al botón de cerrar -->
+                                <button id="close-message-button" class="mt-4 bg-secondary text-white py-2 px-4 rounded-full hover:bg-indigo-700">
                                     Close
                                 </button>
                             </div>
@@ -204,7 +212,8 @@
         </section>
 
         <!-- 3. SOFTWARE SECTION (New section, initially hidden) -->
-        <section id="software-section" class="hidden pt-10">
+        <!-- Se elimina pt-10 de la sección -->
+        <section id="software-section" class="hidden">
             <div class="bg-white p-8 rounded-xl shadow-xl">
                 <h2 class="text-3xl font-bold text-primary mb-6 border-b pb-3">Software Compatibility & Tools</h2>
                 <p class="text-lg text-gray-600 mb-6">
@@ -250,7 +259,8 @@
         </section>
         
         <!-- 4. PERIPHERALS SECTION (NEW, IN ENGLISH) -->
-        <section id="peripherals-section" class="hidden pt-10">
+        <!-- Se elimina pt-10 de la sección -->
+        <section id="peripherals-section" class="hidden">
             <div class="bg-white p-8 rounded-xl shadow-xl">
                 <h2 class="text-3xl font-bold text-primary mb-6 border-b pb-3">Essential Peripherals for Video Editing</h2>
                 <p class="text-lg text-gray-600 mb-6">
@@ -296,6 +306,109 @@
             </div>
         </section>
 
+        <!-- 5. SECCIÓN DE MERCHANDISING (TRADUCIDA Y ARREGLADA) -->
+        <!-- Se elimina pt-10 de la sección -->
+        <section id="merchandising-section" class="hidden">
+            <div class="bg-white p-8 rounded-xl shadow-xl">
+                <!-- Traducido al inglés -->
+                <h2 class="text-3xl font-bold text-primary mb-6 border-b pb-3">Official Merch</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    Take the Pear Republic brand with you. Here is our selection of official products.
+                </p>
+
+                <!-- He cambiado md:grid-cols-2 por md:grid-cols-3 para que quepan los 3 productos -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    
+                    <!-- Producto 1: Taza -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- IMAGEN 1 DE LA TAZA (NUEVA) -->
+                            <img src="Screenshot 2025-11-27 10.28.39.png" 
+                                 alt="Pear Republic Mug (Side 1)" 
+                                 class="w-full h-auto rounded-lg mb-2 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Mug+Side+1'">
+                            <!-- IMAGEN 2 DE LA TAZA (NUEVA) -->
+                            <img src="Screenshot 2025-11-27 10.29.08.png" 
+                                 alt="Pear Republic Mug (Side 2)" 
+                                 class="w-full h-auto rounded-lg mb-4 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Mug+Side+2'">
+                            
+                            <!-- Traducido al inglés -->
+                            <h3 class="text-2xl font-bold text-secondary">Pear Republic Mug</h3>
+                            <p class="text-gray-700 mt-2">
+                                Perfect for your coffee or tea while editing. High-quality ceramic with the logo engraved.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <span class="text-4xl font-extrabold text-accent">12,00 €</span>
+                            <!-- Traducido al inglés Y AÑADIDA CLASE 'merch-buy-button' -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-6 rounded-full font-bold uppercase text-lg shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2: Camiseta -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- IMAGEN 1 (FRENTE) -->
+                            <img src="Screenshot 2025-11-27 10.26.42.png" 
+                                 alt="Pear Republic T-Shirt (Front)" 
+                                 class="w-full h-auto rounded-lg mb-2 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=T-Shirt+Front'">
+                            <!-- IMAGEN 2 (ESPALDA) -->
+                            <img src="Screenshot 2025-11-27 10.26.51.png" 
+                                 alt="Pear Republic T-Shirt (Back)" 
+                                 class="w-full h-auto rounded-lg mb-4 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=T-Shirt+Back'">
+                            
+                            <!-- Traducido al inglés -->
+                            <h3 class="text-2xl font-bold text-secondary">Pear Republic T-Shirt</h3>
+                            <p class="text-gray-700 mt-2">
+                                Wear it in style. Soft and durable 100% organic cotton t-shirt with the classic logo.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <span class="text-4xl font-extrabold text-accent">24,99 €</span>
+                            <!-- Traducido al inglés Y AÑADIDA CLASE 'merch-buy-button' -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-6 rounded-full font-bold uppercase text-lg shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- NUEVO PRODUCTO: Gorra -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- IMAGEN 1 DE LA GORRA (NUEVA) -->
+                            <img src="Screenshot 2025-11-28 08.34.05.png" 
+                                 alt="Pear Republic Cap (Front)" 
+                                 class="w-full h-auto rounded-lg mb-2 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Cap+Front'">
+                            <!-- IMAGEN 2 DE LA GORRA (NUEVA) -->
+                            <img src="Screenshot 2025-11-28 08.34.17.png" 
+                                 alt="Pear Republic Cap (Side)" 
+                                 class="w-full h-auto rounded-lg mb-4 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Cap+Side'">
+                            
+                            <h3 class="text-2xl font-bold text-secondary">Pear Republic Cap</h3>
+                            <p class="text-gray-700 mt-2">
+                                Keep the sun off your face with our stylish embroidered cotton cap. One size fits all.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <span class="text-4xl font-extrabold text-accent">14,95 €</span>
+                            <!-- AÑADIDA CLASE 'merch-buy-button' -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-6 rounded-full font-bold uppercase text-lg shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </div> <!-- end of max-w-6xl container -->
 
     <script>
@@ -311,6 +424,8 @@
             document.getElementById('software-section').classList.add('hidden');
             // NEW: Hide Peripherals section
             document.getElementById('peripherals-section').classList.add('hidden'); 
+            // NUEVO: Ocultar Merchandising
+            document.getElementById('merchandising-section').classList.add('hidden'); 
 
             // 2. Show the target section
             document.getElementById(sectionId).classList.remove('hidden');
@@ -490,9 +605,28 @@
         };
 
         /** Simulates the purchase process and displays the modal. */
-        const handleBuy = () => {
+        // --- MODIFICADO: Renombrado a handleConfigBuy ---
+        const handleConfigBuy = () => {
             const totalPrice = document.getElementById('total-price-display').textContent;
-            document.getElementById('final-price').textContent = totalPrice;
+            
+            // Actualizar contenido del modal para el configurador
+            document.getElementById('message-box-title').textContent = "Configuration Sent!";
+            document.getElementById('message-box-body').innerHTML = `Your order has been registered. Total price: <span class="font-extrabold text-secondary">${totalPrice}</span>.`;
+            
+            document.getElementById('message-box').classList.remove('hidden');
+        };
+
+        // --- NUEVA FUNCIÓN: handleMerchBuy ---
+        /** Muestra un mensaje al comprar un artículo de merchandising. */
+        const handleMerchBuy = (event) => {
+            const card = event.currentTarget.closest('.p-6'); // Obtiene la tarjeta del producto
+            const productName = card.querySelector('h3').textContent;
+            const productPrice = card.querySelector('.text-4xl').textContent;
+
+            // Actualizar contenido del modal para merchandising
+            document.getElementById('message-box-title').textContent = "Item Added to Cart!";
+            document.getElementById('message-box-body').innerHTML = `You've added the <strong>${productName}</strong>. <br> Price: <span class="font-extrabold text-secondary">${productPrice}</span>`;
+
             document.getElementById('message-box').classList.remove('hidden');
         };
 
@@ -507,8 +641,17 @@
             createBaseModelCards();
 
             // 2. Assign event to the buy button
-            document.getElementById('buy-button').addEventListener('click', handleBuy);
+            // --- MODIFICADO: Llama a handleConfigBuy ---
+            document.getElementById('buy-button').addEventListener('click', handleConfigBuy);
             
+            // --- NUEVO: Asignar eventos a botones de merchandising ---
+            document.querySelectorAll('.merch-buy-button').forEach(button => {
+                button.addEventListener('click', handleMerchBuy);
+            });
+
+            // --- NUEVO: Asignar evento al botón de cerrar modal ---
+            document.getElementById('close-message-button').addEventListener('click', closeMessageBox);
+
             // 3. Initialize configurator display state
             document.getElementById('base-price-display').textContent = formatPrice(0);
             document.getElementById('total-price-display').textContent = formatPrice(0);
