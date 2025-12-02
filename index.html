@@ -54,6 +54,16 @@
         #configurator-section .lg\:sticky {
             top: 6rem; /* Adjusted for navbar height */
         }
+        /* New style for merchandising grid to accommodate 4 columns */
+        .merch-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        /* Estilo para el contenedor del carrusel */
+        #usb-carousel {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            height: 100%;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -381,8 +391,8 @@
                     Take the Pear Republic brand with you. Here is our selection of official products.
                 </p>
 
-                <!-- He cambiado md:grid-cols-2 por md:grid-cols-3 para que quepan los 3 productos -->
-                <div class="grid md:grid-cols-3 gap-6">
+                <!-- Grid de 4 columnas para merchandising (clase actualizada: 'merch-grid') -->
+                <div class="grid merch-grid gap-6">
                     
                     <!-- Producto 1: Taza -->
                     <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
@@ -442,7 +452,7 @@
                         </div>
                     </div>
 
-                    <!-- NUEVO PRODUCTO: Gorra -->
+                    <!-- Producto 3: Gorra -->
                     <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
                         <div>
                             <!-- IMAGEN 1 DE LA GORRA (INSERTADA) -->
@@ -463,6 +473,61 @@
                         </div>
                         <div class="flex justify-between items-center mt-6 pt-4 border-t">
                             <span class="text-4xl font-extrabold text-accent">14,95 €</span>
+                            <!-- AÑADIDA CLASE 'merch-buy-button' -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-6 rounded-full font-bold uppercase text-lg shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4: USB (CON CARRUSEL IMPLEMENTADO) -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between" id="usb-merch-card">
+                        <div>
+                            <!-- INICIO DEL CARRUSEL -->
+                            <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gray-200">
+                                <!-- Contenedor de las imágenes. La clase 'flex' y 'min-w-full' son clave para el desplazamiento horizontal. -->
+                                <div id="usb-carousel" class="flex h-full">
+                                    <!-- IMAGEN 1: USB Negro (proporcionada) -->
+                                    <img src="Screenshot 2025-11-28 08.45.52.png" 
+                                         alt="Pear Republic USB (Black) 1" 
+                                         class="min-w-full h-full object-contain"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/220x192/1F2937/ffffff?text=USB+1'">
+                                    <!-- IMAGEN 2: USB Blanco (proporcionada) -->
+                                    <img src="Screenshot 2025-11-28 08.46.08.png" 
+                                         alt="Pear Republic USB (White) 2" 
+                                         class="min-w-full h-full object-contain"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/220x192/1F2937/ffffff?text=USB+2'">
+                                    <!-- Placeholder 3 (simulación de tercera imagen) -->
+                                    <img src="https://placehold.co/220x192/4F46E5/ffffff?text=USB+Design+3" 
+                                         alt="Pear Republic USB (Placeholder 3)" 
+                                         class="min-w-full h-full object-contain">
+                                    <!-- Placeholder 4 (simulación de cuarta imagen) -->
+                                    <img src="https://placehold.co/220x192/10B981/ffffff?text=USB+Design+4" 
+                                         alt="Pear Republic USB (Placeholder 4)" 
+                                         class="min-w-full h-full object-contain">
+                                </div>
+                                <!-- Botón de Navegación Izquierda -->
+                                <button onclick="changeSlide('usb-carousel', -1)" 
+                                        class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition duration-150">
+                                    &lt;
+                                </button>
+                                <!-- Botón de Navegación Derecha -->
+                                <button onclick="changeSlide('usb-carousel', 1)" 
+                                        class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition duration-150">
+                                    &gt;
+                                </button>
+                            </div>
+                            <!-- FIN DEL CARRUSEL -->
+                            
+                            <!-- Traducido al inglés -->
+                            <h3 class="text-2xl font-bold text-secondary">Pear Republic USB (64 GB)</h3>
+                            <p class="text-gray-700 mt-2">
+                                High-speed 64 GB USB drive with the Pear Republic logo. Ideal for quick transfers of video clips or project files.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <!-- Precio solicitado: 14.99 € -->
+                            <span class="text-4xl font-extrabold text-accent">14,99 €</span>
                             <!-- AÑADIDA CLASE 'merch-buy-button' -->
                             <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-6 rounded-full font-bold uppercase text-lg shadow-lg hover:bg-indigo-700">
                                 Buy Now
@@ -709,8 +774,8 @@
             // Find the closest card to get product details
             const card = event.currentTarget.closest('.p-6'); 
             const productName = card.querySelector('h3').textContent;
-            // Find the span with the price which has the text-xl class
-            const productPriceSpan = card.querySelector('.text-xl'); 
+            // Find the span with the price which has the text-xl or text-4xl class (merch uses text-4xl)
+            const productPriceSpan = card.querySelector('.text-4xl') || card.querySelector('.text-xl'); 
             const productPrice = productPriceSpan ? productPriceSpan.textContent : 'N/A';
             
             // Show the 'Purchase Accepted' message in English.
@@ -728,6 +793,37 @@
         /** Closes the message modal. */
         const closeMessageBox = () => {
             document.getElementById('message-box').classList.add('hidden');
+        };
+
+        // --- CARRUSEL LOGIC ---
+
+        // Global storage for carousel indices (only USB carousel for now)
+        const slideIndices = {
+            'usb-carousel': 0 
+        };
+
+        /** Handles changing the slide in a carousel. */
+        const changeSlide = (carouselId, direction) => {
+            const carouselContainer = document.getElementById(carouselId);
+            if (!carouselContainer) return;
+
+            const slides = carouselContainer.children;
+            const totalSlides = slides.length;
+
+            let currentIndex = slideIndices[carouselId] || 0;
+
+            // Calculate the new index
+            currentIndex = (currentIndex + direction) % totalSlides;
+            if (currentIndex < 0) {
+                currentIndex = totalSlides - 1;
+            }
+
+            // Update global index
+            slideIndices[carouselId] = currentIndex;
+
+            // Apply transformation (moves the container horizontally)
+            const offset = -currentIndex * 100; // 100% per slide
+            carouselContainer.style.transform = `translateX(${offset}%)`;
         };
 
         // --- INITIALIZATION ---
