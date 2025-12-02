@@ -81,7 +81,7 @@
                 <!-- PERIPHERALS LINK -->
                 <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary" 
                    data-target="peripherals-section" onclick="showSection(event, 'peripherals-section')">Peripherals</a>
-                <!-- NUEVO ENLACE DE MERCHANDISING -->
+                <!-- ENLACE DE MERCHANDISING -->
                 <a href="#" class="nav-link p-2 transition duration-150 ease-in-out text-gray-600 hover:text-secondary" 
                    data-target="merchandising-section" onclick="showSection(event, 'merchandising-section')">Merchandising</a>
             </div>
@@ -92,7 +92,6 @@
     <div class="max-w-6xl mx-auto p-4 md:p-8 pt-24">
 
         <!-- 1. HOME/ABOUT US SECTION -->
-        <!-- Se elimina pt-10 de la sección, ya que ahora lo controla el div superior -->
         <section id="home-section">
             <header class="text-center mb-12 p-6 rounded-xl bg-white shadow-lg">
                 <h1 class="text-5xl font-extrabold text-primary tracking-tight mb-4">
@@ -109,7 +108,6 @@
                     <p class="text-gray-700 leading-relaxed">
                         We understand that video professionals demand speed, reliability, and precision. Our systems are engineered from the ground up to handle the heaviest workloads, including 4K, 8K, and high-bitrate codecs. We focus on balanced component selection to eliminate bottlenecks and provide you with seamless playback and rapid rendering times. Stop waiting for your machine and start creating.
                     </p>
-                    <!-- LISTA DE PUNTOS ELIMINADA DE AQUÍ -->
                 </div>
                 
                 <div class="bg-white p-6 rounded-xl shadow-xl flex items-center justify-center">
@@ -158,7 +156,6 @@
             </div>
 
             <div class="text-center mt-12">
-                <!-- MODIFICADO: Cambiado 'bg-accent' por 'bg-emerald-600' y quitado el 'hover:bg-emerald-600' -->
                 <button onclick="showSection(null, 'configurator-section')" class="btn-buy bg-emerald-600 text-white py-3 px-8 rounded-full font-bold uppercase text-xl shadow-lg">
                     Start Building Your PC
                 </button>
@@ -237,7 +234,6 @@
         </section>
 
         <!-- 3. SOFTWARE SECTION (New section, initially hidden) -->
-        <!-- Se elimina pt-10 de la sección -->
         <section id="software-section" class="hidden">
             <div class="bg-white p-8 rounded-xl shadow-xl">
                 <h2 class="text-3xl font-bold text-primary mb-6 border-b pb-3">Software Compatibility & Tools</h2>
@@ -283,8 +279,7 @@
             </div>
         </section>
         
-        <!-- 4. PERIPHERALS SECTION (NEW, IN ENGLISH) -->
-        <!-- Se elimina pt-10 de la sección -->
+        <!-- 4. PERIPHERALS SECTION -->
         <section id="peripherals-section" class="hidden">
             <div class="bg-white p-8 rounded-xl shadow-xl">
                 <h2 class="text-3xl font-bold text-primary mb-6 border-b pb-3">Essential Peripherals for Video Editing</h2>
@@ -292,47 +287,107 @@
                     A great PC needs the best tools to complete your professional setup. We recommend these high-quality peripherals for the best video editing experience.
                 </p>
 
-                <div class="grid md:grid-cols-3 gap-6">
+                <!-- Grid de 4 columnas para periféricos -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     
-                    <!-- Card 1: Monitor -->
-                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md">
-                        <h3 class="text-2xl font-bold text-secondary">Professional Color Monitor</h3>
-                        <p class="text-gray-700 mt-2">
-                            A minimum 27-inch 4K monitor with 10-bit color depth (or 100% DCI-P3 coverage) is essential for accurate color grading and final look consistency.
-                        </p>
-                        <img src="https://placehold.co/400x250/1F2937/ffffff?text=4K+Monitor" 
-                             alt="4K Professional Monitor" 
-                             class="w-full h-auto rounded-lg mt-4 object-cover">
+                    <!-- PERIPHERAL CARD 1: Dell UltraSharp 32 6K Monitor (Updated image source) -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- Image file inserted for the Dell Monitor -->
+                            <img src="monitor-ultrasharp-u3224kb-pdp-hero.avif" 
+                                 alt="Dell UltraSharp 32 6K Monitor" 
+                                 class="w-full h-auto rounded-lg mb-4 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Monitor'">
+                            
+                            <h3 class="text-2xl font-bold text-secondary">Dell UltraSharp 32 6K Monitor</h3>
+                            <p class="text-gray-700 mt-2">
+                                A 32-inch professional monitor with 6K resolution (6144 x 3456), ideal for creators who require maximum color fidelity and detail for high-resolution post-production projects.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <span class="text-xl font-extrabold text-accent">2.500 €</span>
+                            <!-- Added 'merch-buy-button' class to use existing JS logic for simulated purchase message -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- Card 2: Mouse/Tablet -->
-                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md">
-                        <h3 class="text-2xl font-bold text-secondary">High-Precision Mouse & Tablet</h3>
-                        <p class="text-gray-700 mt-2">
-                            A weighted, high DPI mouse offers precise control for frame-accurate editing. A graphics tablet is perfect for detailed color correction and mask work.
-                        </p>
-                        <img src="https://placehold.co/400x250/1F2937/ffffff?text=Mouse+%26+Tablet" 
-                             alt="Precision Mouse and Graphic Tablet" 
-                             class="w-full h-auto rounded-lg mt-4 object-cover">
+                    <!-- PERIPHERAL CARD 2: Logitech MK295 Silent Wireless -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- IMAGE FILE INSERTED FOR LOGITECH MK295 -->
+                            <img src="1528-logitech-mk295-silent-wireless-combo-de-raton-y-teclado-inalambricos-opiniones.webp" 
+                                 alt="Logitech MK295 Silent Wireless Combo" 
+                                 class="w-full h-auto rounded-lg mb-4 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Keyboard+Mouse'">
+                            
+                            <h3 class="text-2xl font-bold text-secondary">Logitech MK295 Silent Wireless Combo</h3>
+                            <p class="text-gray-700 mt-2">
+                                A silent wireless keyboard and mouse combo that eliminates 90% of noise. Perfect for quiet environments and late-night editing sessions without distracting clicking sounds.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <span class="text-xl font-extrabold text-accent">40 €</span>
+                            <!-- Added 'merch-buy-button' class to use existing JS logic for simulated purchase message -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- Card 3: Storage -->
-                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md">
-                        <h3 class="text-2xl font-bold text-secondary">External Backup Storage (RAID)</h3>
-                        <p class="text-gray-700 mt-2">
-                            Fast external RAID storage (Thunderbolt/USB 4) is critical for project archiving and local backup, ensuring data safety and rapid file access.
-                        </p>
-                        <img src="https://placehold.co/400x250/1F2937/ffffff?text=RAID+Storage" 
-                             alt="External RAID Drive" 
-                             class="w-full h-auto rounded-lg mt-4 object-cover">
+                    <!-- PERIPHERAL CARD 3: Elgato Wave:3 Microphone (Updated image source) -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- IMAGEN DEL MICRÓFONO ELGATO WAVE:3 INSERTADA con el nombre correcto -->
+                            <img src="wave-3-black-01_zz5vyc.avif" 
+                                 alt="Elgato Wave:3 Microphone" 
+                                 class="w-full h-auto rounded-lg mb-4 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Microphone+Image+Not+Found'">
+                            
+                            <h3 class="text-2xl font-bold text-secondary">Elgato Wave:3 Microphone</h3>
+                            <p class="text-gray-700 mt-2">
+                                A premium USB condenser microphone with a digital mixer solution, perfect for clear voiceovers, streaming, and content creation. Includes Clipguard technology.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <span class="text-xl font-extrabold text-accent">120 €</span>
+                            <!-- Added 'merch-buy-button' class to use existing JS logic for simulated purchase message -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
                     </div>
+
+                    <!-- PERIPHERAL CARD 4: Corsair HS80 Max Wireless (Image source updated) -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- IMAGE SOURCE UPDATED WITH THE UPLOADED FILE NAME -->
+                            <img src="195-corsair-hs80-max-wireless-auriculares-gaming-premium-inalambricos-carbon.webp" 
+                                 alt="Corsair HS80 Max Wireless Headset" 
+                                 class="w-full h-auto rounded-lg mb-4 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Headset'">
+                            
+                            <h3 class="text-2xl font-bold text-secondary">Corsair HS80 Max Wireless</h3>
+                            <p class="text-gray-700 mt-2">
+                                Wireless gaming headset with Dolby Atmos and multi-platform compatibility. Offers crystal-clear audio monitoring and a high-quality integrated microphone.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <span class="text-xl font-extrabold text-accent">190 €</span>
+                            <!-- Added 'merch-buy-button' class to use existing JS logic for simulated purchase message -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
         </section>
 
-        <!-- 5. SECCIÓN DE MERCHANDISING (TRADUCIDA Y ARREGLADA) -->
-        <!-- Se elimina pt-10 de la sección -->
+        <!-- 5. SECCIÓN DE MERCHANDISING -->
         <section id="merchandising-section" class="hidden">
             <div class="bg-white p-8 rounded-xl shadow-xl">
                 <!-- Traducido al inglés -->
@@ -348,12 +403,12 @@
                     <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
                         <div>
                             <!-- IMAGEN 1 DE LA TAZA (INSERTADA) -->
-                            <img src="Screenshot 2025-11-27 10.28.39.png" 
+                            <img src="taza 1.png" 
                                  alt="Pear Republic Mug (Side 1)" 
                                  class="w-full h-auto rounded-lg mb-2 object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Mug+Side+1'">
                             <!-- IMAGEN 2 DE LA TAZA (INSERTADA) -->
-                            <img src="Screenshot 2025-11-27 10.29.08.png" 
+                            <img src="taza 2.png" 
                                  alt="Pear Republic Mug (Side 2)" 
                                  class="w-full h-auto rounded-lg mb-4 object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Mug+Side+2'">
@@ -366,7 +421,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-6 pt-4 border-t">
                             <span class="text-4xl font-extrabold text-accent">12,00 €</span>
-                            <!-- Traducido al inglés Y AÑADIDA CLASE 'merch-buy-button' -->
+                            <!-- AÑADIDA CLASE 'merch-buy-button' -->
                             <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-6 rounded-full font-bold uppercase text-lg shadow-lg hover:bg-indigo-700">
                                 Buy Now
                             </button>
@@ -377,12 +432,12 @@
                     <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
                         <div>
                             <!-- IMAGEN 1 (FRENTE) (INSERTADA) -->
-                            <img src="Screenshot 2025-11-27 10.26.42.png" 
+                            <img src="camiseta 1.png" 
                                  alt="Pear Republic T-Shirt (Front)" 
                                  class="w-full h-auto rounded-lg mb-2 object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=T-Shirt+Front'">
                             <!-- IMAGEN 2 (ESPALDA) (INSERTADA) -->
-                            <img src="Screenshot 2025-11-27 10.26.51.png" 
+                            <img src="camiseta 2.png" 
                                  alt="Pear Republic T-Shirt (Back)" 
                                  class="w-full h-auto rounded-lg mb-4 object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=T-Shirt+Back'">
@@ -395,7 +450,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-6 pt-4 border-t">
                             <span class="text-4xl font-extrabold text-accent">24,99 €</span>
-                            <!-- Traducido al inglés Y AÑADIDA CLASE 'merch-buy-button' -->
+                            <!-- AÑADIDA CLASE 'merch-buy-button' -->
                             <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-6 rounded-full font-bold uppercase text-lg shadow-lg hover:bg-indigo-700">
                                 Buy Now
                             </button>
@@ -406,12 +461,12 @@
                     <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
                         <div>
                             <!-- IMAGEN 1 DE LA GORRA (INSERTADA) -->
-                            <img src="Screenshot 2025-11-28 08.34.05.png" 
+                            <img src="gorra 1.png" 
                                  alt="Pear Republic Cap (Front)" 
                                  class="w-full h-auto rounded-lg mb-2 object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Cap+Front'">
                             <!-- IMAGEN 2 DE LA GORRA (INSERTADA) -->
-                            <img src="Screenshot 2025-11-28 08.34.17.png" 
+                            <img src="gorra 2.png" 
                                  alt="Pear Republic Cap (Side)" 
                                  class="w-full h-auto rounded-lg mb-4 object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/500x350/1F2937/ffffff?text=Cap+Side'">
@@ -447,9 +502,9 @@
             document.getElementById('home-section').classList.add('hidden');
             document.getElementById('configurator-section').classList.add('hidden');
             document.getElementById('software-section').classList.add('hidden');
-            // NEW: Hide Peripherals section
+            // Hide Peripherals section
             document.getElementById('peripherals-section').classList.add('hidden'); 
-            // NUEVO: Ocultar Merchandising
+            // Ocultar Merchandising
             document.getElementById('merchandising-section').classList.add('hidden'); 
 
             // 2. Show the target section
@@ -482,7 +537,7 @@
             ],
             'SSD': [
                 { name: "1TB NVMe Gen4", price: 80 },
-                { name: "2TB NVMe Gen4", price: 150 },
+                { name: "2TB NVme Gen4", price: 150 },
                 { name: "4TB NVMe Gen4", price: 300 }
             ]
         };
@@ -509,7 +564,7 @@
                     CPU: "Intel Core i9-14900K (Maximum 8K)",
                     GPU: "NVIDIA GeForce RTX 4080 (16GB)",
                     RAM: "64GB DDR5 6000MHz",
-                    SSD: "2TB NVme Gen4"
+                    SSD: "2TB NVMe Gen4"
                 }
             }
         };
@@ -629,8 +684,7 @@
             buyButton.disabled = !componentsSelected; 
         };
 
-        /** Simulates the purchase process and displays the modal. */
-        // --- MODIFICADO: Renombrado a handleConfigBuy ---
+        /** Simulates the purchase process and displays the modal for the Configurator. */
         const handleConfigBuy = () => {
             const totalPrice = document.getElementById('total-price-display').textContent;
             
@@ -641,16 +695,19 @@
             document.getElementById('message-box').classList.remove('hidden');
         };
 
-        // --- NUEVA FUNCIÓN: handleMerchBuy ---
         /** Muestra un mensaje al comprar un artículo de merchandising. */
         const handleMerchBuy = (event) => {
             const card = event.currentTarget.closest('.p-6'); // Obtiene la tarjeta del producto
             const productName = card.querySelector('h3').textContent;
-            const productPrice = card.querySelector('.text-4xl').textContent;
-
-            // Actualizar contenido del modal para merchandising
-            document.getElementById('message-box-title').textContent = "Item Added to Cart!";
-            document.getElementById('message-box-body').innerHTML = `You've added the <strong>${productName}</strong>. <br> Price: <span class="font-extrabold text-secondary">${productPrice}</span>`;
+            const productPrice = card.querySelector('.text-xl').textContent; // Ajustado a text-xl
+            
+            // Muestra el mensaje de 'Compra Aceptada' en español.
+            document.getElementById('message-box-title').textContent = "¡Compra Aceptada!";
+            document.getElementById('message-box-body').innerHTML = `
+                El artículo <strong>${productName}</strong> ha sido añadido a tu pedido. 
+                <br> ¡Gracias por tu compra!
+                <br> Precio: <span class="font-extrabold text-secondary">${productPrice}</span>
+            `;
 
             document.getElementById('message-box').classList.remove('hidden');
         };
@@ -666,23 +723,22 @@
             createBaseModelCards();
 
             // 2. Assign event to the buy button
-            // --- MODIFICADO: Llama a handleConfigBuy ---
             document.getElementById('buy-button').addEventListener('click', handleConfigBuy);
             
-            // --- NUEVO: Asignar eventos a botones de merchandising ---
+            // 3. Asignar eventos a botones de merchandising y periféricos (USAN LA MISMA FUNCIÓN)
             document.querySelectorAll('.merch-buy-button').forEach(button => {
                 button.addEventListener('click', handleMerchBuy);
             });
 
-            // --- NUEVO: Asignar evento al botón de cerrar modal ---
+            // 4. Asignar evento al botón de cerrar modal
             document.getElementById('close-message-button').addEventListener('click', closeMessageBox);
 
-            // 3. Initialize configurator display state
+            // 5. Initialize configurator display state
             document.getElementById('base-price-display').textContent = formatPrice(0);
             document.getElementById('total-price-display').textContent = formatPrice(0);
             document.getElementById('component-options').innerHTML = '<p class="text-center text-gray-500 py-10">Select a Base Model to start customizing.</p>';
 
-            // 4. Ensure the Home section is visible on load and others are hidden
+            // 6. Ensure the Home section is visible on load and others are hidden
             showSection(null, 'home-section');
         };
     </script>
