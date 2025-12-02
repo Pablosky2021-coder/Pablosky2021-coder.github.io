@@ -73,11 +73,11 @@
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <!-- Logo/Brand Section -->
             <div class="flex items-center">
-                <!-- LOGO RESTAURADO AL ARCHIVO ORIGINAL "pear-logo.jpg" Y CON rounded-full -->
-                <img src="pear-logo.jpg" 
+                <!-- LOGO ACTUALIZADO A "logo.png" SEGÚN SOLICITUD DEL USUARIO -->
+                <img src="logo.png" 
                      alt="Pear Republic Logo" 
-                     class="h-10 w-auto rounded-full object-contain bg-gray-900 p-1" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/100x40/10B981/ffffff?text=Logo'"> 
+                     class="h-10 w-auto object-contain" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/100x40/10B981/ffffff?text=Logo+Nuevo'"> 
                 <span class="text-2xl font-extrabold text-primary ml-2">Pear Republic</span>
             </div>
 
@@ -186,10 +186,11 @@
                     </div>
 
                     <div class="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
-                        <p class="font-semibold text-lg text-primary">Base Price:</p>
+                        <p class="font-semibold text-lg text-primary">Base Price (Fixed Components):</p>
                         <p id="base-price-display" class="text-2xl font-extrabold text-secondary mt-1">
                             €0
                         </p>
+                        <p class="text-sm text-gray-500 mt-1">Includes Chassis, Motherboard, Cooling, and Assembly.</p>
                     </div>
                 </div>
 
@@ -211,6 +212,9 @@
                                     €0
                                 </p>
                                 <p class="text-sm text-gray-500 mt-1">Shipping not included.</p>
+                                <p id="dual-gpu-note" class="mt-1 text-xs text-red-500 font-semibold hidden">
+                                    *Price includes two selected GPUs for the Color Master model.
+                                </p>
                             </div>
                             
                             <button id="buy-button" 
@@ -249,7 +253,7 @@
                         <h3 class="text-2xl font-bold text-secondary">Adobe Creative Cloud Pro</h3>
                         <p class="text-gray-700 mt-2">The essential suite for video editing, motion graphics, and visual effects, including Premiere Pro, After Effects, and Photoshop. Designed for professional quality, it uses your PC's power to the maximum.</p>
                         <!-- CLASE MANTENIDA: bg-emerald-500 | hover:bg-emerald-600 -->
-                        <a href="https://www.adobe.com/es/creativecloud/pro.html" target="_blank" class="mt-4 inline-block bg-emerald-500 text-white font-semibold py-2 px-4 rounded-full hover:bg-emerald-600 transition duration-150 text-sm">
+                        <a href="https://www.adobe.com/es-es/creativecloud/pro.html" target="_blank" class="mt-4 inline-block bg-emerald-500 text-white font-semibold py-2 px-4 rounded-full hover:bg-emerald-600 transition duration-150 text-sm">
                             View Adobe Plans
                         </a>
                     </div>
@@ -390,6 +394,30 @@
                         <div class="flex justify-between items-center mt-6 pt-4 border-t">
                             <span class="text-xl font-extrabold text-accent">190 €</span>
                             <!-- Already has 'merch-buy-button' class -->
+                            <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- NUEVA TARJETA DE PERIFÉRICO 5: Servidor NAS -->
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- IMAGEN DEL SERVIDOR NAS (ASSET_MP_154433094.webp) -->
+                            <img src="ASSET_MP_154433094.webp" 
+                                 alt="Synology NAS Server" 
+                                 class="w-full h-auto rounded-lg mb-4 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/500x350/4F46E5/ffffff?text=NAS+Server'">
+                            
+                            <h3 class="text-2xl font-bold text-secondary">Synology 4-Bay NAS Server (48TB)</h3>
+                            <p class="text-gray-700 mt-2">
+                                Network Attached Storage solution for professional video collaboration and high-speed backup (RAID redundancy included). Essential for team environments and large archives.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 pt-4 border-t">
+                            <!-- PRECIO SOLICITADO: 3.064 € -->
+                            <span class="text-xl font-extrabold text-accent">3.064 €</span>
+                            <!-- AÑADIDA CLASE 'merch-buy-button' -->
                             <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
                                 Buy Now
                             </button>
@@ -613,53 +641,63 @@
             }
         };
 
-        // --- CONFIGURATOR DATA (PSU REMOVED) ---
+        // --- CONFIGURATOR DATA (UPDATED) ---
         const componentsData = {
+            // CPU: AMD ryzen 5, 7, 9
             'CPU': [
-                { name: "Intel Core i7-14700K (Ideal 4K)", price: 400 },
-                { name: "Intel Core i9-14900K (Maximum 8K)", price: 650 },
-                { name: "AMD Ryzen 9 7950X", price: 550 }
+                { name: "AMD Ryzen 5", price: 180 },
+                { name: "AMD Ryzen 7", price: 490 },
+                { name: "AMD Ryzen 9", price: 675 }
             ],
+            // GPU: RTX 5060, 5070, 5090
             'GPU': [
-                { name: "NVIDIA GeForce RTX 4070 (12GB)", price: 600 },
-                { name: "NVIDIA GeForce RTX 4080 (16GB)", price: 1100 },
-                { name: "NVIDIA GeForce RTX 4090 (24GB)", price: 1700 }
+                { name: "NVIDIA GeForce RTX 5060", price: 480 },
+                { name: "NVIDIA GeForce RTX 5070", price: 690 },
+                { name: "NVIDIA GeForce RTX 5090", price: 3500 }
             ],
+            // RAM: 32 GB, 64 GB, 128 GB
             'RAM': [
-                { name: "32GB DDR5 5600MHz", price: 120 },
-                { name: "64GB DDR5 6000MHz", price: 250 },
-                { name: "128GB DDR5 6000MHz", price: 500 }
+                { name: "32 GB DDR5", price: 400 },
+                { name: "64 GB DDR5", price: 500 },
+                { name: "128 GB DDR5", price: 1200 }
             ],
+            // SSD: 500 GB, 1 TB, 4 TB
             'SSD': [
-                { name: "1TB NVMe Gen4", price: 80 },
-                { name: "2TB NVme Gen4", price: 150 },
-                { name: "4TB NVMe Gen4", price: 300 }
+                { name: "500 GB NVMe Gen4", price: 90 },
+                { name: "1 TB NVMe Gen4", price: 120 },
+                { name: "4 TB NVMe Gen4", price: 265 }
             ]
         };
 
+        // Fixed base prices calculated based on the previous total costs minus the new component prices.
+        // This 'basePrice' represents the fixed cost (Case, Motherboard, Cooling, OS, Assembly).
         const baseModelsData = {
             'video_editor': {
                 id: 'video_editor',
                 name: "Editor Pro (4K)",
-                basePrice: 1500,
+                // BasePrice (Fixed Cost): ~1550 EUR
+                basePrice: 1550, 
                 description: "Optimized configuration for 4K editing and graphic design. Great balance between cost and performance.",
                 defaultComponents: {
-                    CPU: "Intel Core i7-14700K (Ideal 4K)",
-                    GPU: "NVIDIA GeForce RTX 4070 (12GB)",
-                    RAM: "32GB DDR5 5600MHz",
-                    SSD: "1TB NVMe Gen4"
+                    CPU: "AMD Ryzen 5",
+                    GPU: "NVIDIA GeForce RTX 5060",
+                    RAM: "32 GB DDR5",
+                    SSD: "500 GB NVMe Gen4"
                 }
             },
             'color_grader': {
                 id: 'color_grader',
                 name: "Color Master (8K)",
-                basePrice: 2200,
-                description: "Maximum performance for color correction, VFX, and 8K rendering. No compromises on power.",
+                // BasePrice (Fixed Cost): ~1810 EUR (Reflects higher-end fixed components)
+                basePrice: 1810,
+                // DESCRIPTION UPDATED TO MENTION DUAL GPU
+                description: "Maximum performance for color correction, VFX, and 8K rendering. Includes DUAL GPU configuration (2x selected graphics card).",
                 defaultComponents: {
-                    CPU: "Intel Core i9-14900K (Maximum 8K)",
-                    GPU: "NVIDIA GeForce RTX 4080 (16GB)",
-                    RAM: "64GB DDR5 6000MHz",
-                    SSD: "2TB NVMe Gen4"
+                    CPU: "AMD Ryzen 7",
+                    // NOTE: The price multiplication happens in calculateTotal, here we just select the component
+                    GPU: "NVIDIA GeForce RTX 5070", 
+                    RAM: "64 GB DDR5",
+                    SSD: "1 TB NVMe Gen4"
                 }
             }
         };
@@ -670,7 +708,8 @@
 
         /** Formats a number to EUR currency. */
         const formatPrice = (price) => {
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(price);
+            // Ensures two decimal places for EUR, but still displays as price
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(price);
         };
 
         /** Generates HTML for component options (dropdown). */
@@ -686,7 +725,7 @@
             
             options.forEach(option => {
                 const isSelected = option.name === defaultSelection;
-                const priceText = option.price > 0 ? ` (+${formatPrice(option.price)})` : '';
+                const priceText = `(${formatPrice(option.price)})`; // Show absolute price of component
                 
                 html += `
                     <option value="${option.name}" data-price="${option.price}" ${isSelected ? 'selected' : ''}>
@@ -698,6 +737,25 @@
             html += `</select></div>`;
             return html;
         };
+        
+        // --- MISSING FUNCTION ADDED HERE ---
+        /** Generates and renders component options based on the selected base model defaults. */
+        const renderComponentOptions = (defaultComponents) => {
+            const container = document.getElementById('component-options');
+            container.innerHTML = ''; // Clear previous content
+
+            Object.keys(componentsData).forEach(key => {
+                const options = componentsData[key];
+                const defaultSelection = defaultComponents[key];
+                
+                const html = createComponentDropdown(key, options, defaultSelection);
+                container.innerHTML += html; // Append the new component group
+            });
+
+            // Ensure the total is recalculated after rendering new options
+            calculateTotal();
+        };
+        // ------------------------------------
 
         /** Generates HTML for base model selection. */
         const createBaseModelCards = () => {
@@ -714,7 +772,7 @@
                     <input type="radio" id="radio-${model.id}" name="base_model" value="${model.id}" class="hidden">
                     <label for="radio-${model.id}" class="block cursor-pointer">
                         <h3 class="text-xl font-bold text-primary">${model.name}</h3>
-                        <p class="text-3xl font-extrabold text-secondary mt-1">${formatPrice(model.basePrice)}</p>
+                        <p class="text-3xl font-extrabold text-secondary mt-1">Base: ${formatPrice(model.basePrice)}</p>
                         <p class="mt-2 text-sm text-gray-600">${model.description}</p>
                         <div class="mt-3 text-sm font-medium text-accent">Click to select</div>
                     </label>
@@ -733,42 +791,49 @@
 
             document.getElementById('base-price-display').textContent = formatPrice(model.basePrice);
 
-            renderComponentOptions(model.defaultComponents);
+            // Now, this function is defined and the error is resolved.
+            renderComponentOptions(model.defaultComponents); 
             
             calculateTotal();
         };
 
-        /** Renders component dropdowns with default selections. */
-        const renderComponentOptions = (defaults) => {
-            const container = document.getElementById('component-options');
-            container.innerHTML = '';
-            
-            Object.keys(componentsData).forEach(key => {
-                const defaultOptionName = defaults[key];
-                const dropdownHtml = createComponentDropdown(key, componentsData[key], defaultOptionName);
-                container.innerHTML += dropdownHtml;
-            });
-        };
-
-        /** Calculates the total price by summing base and options. */
+        /** * Calculates the total price by summing base and options. 
+         * Includes DUAL GPU logic for 'Color Master'.
+         */
         const calculateTotal = () => {
             const totalDisplay = document.getElementById('total-price-display');
             const buyButton = document.getElementById('buy-button');
+            const dualGpuNote = document.getElementById('dual-gpu-note');
             
             if (!selectedBaseModelId) {
                 totalDisplay.textContent = formatPrice(0);
                 buyButton.disabled = true;
+                dualGpuNote.classList.add('hidden');
                 return;
             }
 
             let totalPrice = baseModelsData[selectedBaseModelId].basePrice;
             let componentsSelected = true;
 
+            // Check if Color Master is selected to apply the dual GPU multiplier
+            const isColorMaster = selectedBaseModelId === 'color_grader';
+            if (isColorMaster) {
+                dualGpuNote.classList.remove('hidden');
+            } else {
+                dualGpuNote.classList.add('hidden');
+            }
+
             Object.keys(componentsData).forEach(key => {
                 const selectElement = document.getElementById(key);
                 if (selectElement) {
                     const selectedOption = selectElement.options[selectElement.selectedIndex];
-                    const componentPrice = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+                    let componentPrice = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+                    
+                    // Apply dual GPU logic for Color Master
+                    if (key === 'GPU' && isColorMaster) {
+                        componentPrice *= 2; // Double the GPU price for Color Master
+                    }
+                    
                     totalPrice += componentPrice;
                 } else {
                     componentsSelected = false;
