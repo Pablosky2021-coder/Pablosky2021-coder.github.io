@@ -63,9 +63,10 @@
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <!-- Logo/Brand Section -->
             <div class="flex items-center">
-                <img src="unnamed.png" 
+                <!-- LOGO ACTUALIZADO CON LA IMAGEN PROPORCIONADA: editor-videos.jpg -->
+                <img src="editor-videos.jpg" 
                      alt="Pear Republic Logo" 
-                     class="h-10 w-auto" 
+                     class="h-10 w-auto rounded-full object-cover" 
                      onerror="this.onerror=null; this.src='https://placehold.co/100x40/10B981/ffffff?text=Logo'"> 
                 <span class="text-2xl font-extrabold text-primary ml-2">Pear Republic</span>
             </div>
@@ -208,25 +209,9 @@
                                 Buy Configuration
                             </button>
                         </div>
-
-                        <!-- Confirmation/Alert Message (Simulated Modal) -->
-                        <div id="message-box" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
-                            <div class="bg-white p-8 rounded-lg shadow-2xl max-w-sm text-center">
-                                <svg class="mx-auto h-12 w-12 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <!-- Título dinámico -->
-                                <h3 id="message-box-title" class="mt-2 text-xl font-bold text-primary">Configuration Sent!</h3>
-                                <!-- Contenido dinámico -->
-                                <p id="message-box-body" class="mt-1 text-gray-600">
-                                    Your order has been registered. Total price: <span id="final-price" class="font-extrabold text-secondary"></span>.
-                                </p>
-                                <!-- ID añadido al botón de cerrar -->
-                                <button id="close-message-button" class="mt-4 bg-secondary text-white py-2 px-4 rounded-full hover:bg-indigo-700">
-                                    Close
-                                </button>
-                            </div>
-                        </div>
+                        
+                        <!-- NOTA IMPORTANTE: El modal #message-box ha sido movido fuera de esta sección al final del body. -->
+                        
                     </div>
                 </div>
 
@@ -306,7 +291,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-6 pt-4 border-t">
                             <span class="text-xl font-extrabold text-accent">2.500 €</span>
-                            <!-- Added 'merch-buy-button' class to use existing JS logic for simulated purchase message -->
+                            <!-- Already has 'merch-buy-button' class -->
                             <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
                                 Buy Now
                             </button>
@@ -329,7 +314,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-6 pt-4 border-t">
                             <span class="text-xl font-extrabold text-accent">40 €</span>
-                            <!-- Added 'merch-buy-button' class to use existing JS logic for simulated purchase message -->
+                            <!-- Already has 'merch-buy-button' class -->
                             <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
                                 Buy Now
                             </button>
@@ -352,7 +337,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-6 pt-4 border-t">
                             <span class="text-xl font-extrabold text-accent">120 €</span>
-                            <!-- Added 'merch-buy-button' class to use existing JS logic for simulated purchase message -->
+                            <!-- Already has 'merch-buy-button' class -->
                             <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
                                 Buy Now
                             </button>
@@ -375,7 +360,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-6 pt-4 border-t">
                             <span class="text-xl font-extrabold text-accent">190 €</span>
-                            <!-- Added 'merch-buy-button' class to use existing JS logic for simulated purchase message -->
+                            <!-- Already has 'merch-buy-button' class -->
                             <button class="btn-buy merch-buy-button bg-secondary text-white py-2 px-4 rounded-full font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
                                 Buy Now
                             </button>
@@ -490,6 +475,30 @@
         </section>
 
     </div> <!-- end of max-w-6xl container -->
+    
+    <!-- 
+        MODAL DE MENSAJE:
+        El modal fue movido fuera de la sección 'configurator-section' para que sea visible
+        sin importar qué pestaña de navegación esté activa.
+    -->
+    <div id="message-box" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-lg shadow-2xl max-w-sm text-center">
+            <svg class="mx-auto h-12 w-12 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <!-- Título dinámico -->
+            <h3 id="message-box-title" class="mt-2 text-xl font-bold text-primary">Configuration Sent!</h3>
+            <!-- Contenido dinámico -->
+            <p id="message-box-body" class="mt-1 text-gray-600">
+                Your order has been registered. Total price: <span id="final-price" class="font-extrabold text-secondary"></span>.
+            </p>
+            <!-- ID añadido al botón de cerrar -->
+            <button id="close-message-button" class="mt-4 bg-secondary text-white py-2 px-4 rounded-full hover:bg-indigo-700">
+                Close
+            </button>
+        </div>
+    </div>
+    <!-- FIN DEL MODAL DE MENSAJE -->
 
     <script>
         // --- NAVIGATION LOGIC ---
@@ -688,27 +697,31 @@
         const handleConfigBuy = () => {
             const totalPrice = document.getElementById('total-price-display').textContent;
             
-            // Actualizar contenido del modal para el configurador
+            // Update modal content for the configurator (in English)
             document.getElementById('message-box-title').textContent = "Configuration Sent!";
             document.getElementById('message-box-body').innerHTML = `Your order has been registered. Total price: <span class="font-extrabold text-secondary">${totalPrice}</span>.`;
             
             document.getElementById('message-box').classList.remove('hidden');
         };
 
-        /** Muestra un mensaje al comprar un artículo de merchandising. */
+        /** Displays a message when purchasing a peripheral or merchandise item (in English). */
         const handleMerchBuy = (event) => {
-            const card = event.currentTarget.closest('.p-6'); // Obtiene la tarjeta del producto
+            // Find the closest card to get product details
+            const card = event.currentTarget.closest('.p-6'); 
             const productName = card.querySelector('h3').textContent;
-            const productPrice = card.querySelector('.text-xl').textContent; // Ajustado a text-xl
+            // Find the span with the price which has the text-xl class
+            const productPriceSpan = card.querySelector('.text-xl'); 
+            const productPrice = productPriceSpan ? productPriceSpan.textContent : 'N/A';
             
-            // Muestra el mensaje de 'Compra Aceptada' en español.
-            document.getElementById('message-box-title').textContent = "¡Compra Aceptada!";
+            // Show the 'Purchase Accepted' message in English.
+            document.getElementById('message-box-title').textContent = "Purchase Accepted!";
             document.getElementById('message-box-body').innerHTML = `
-                El artículo <strong>${productName}</strong> ha sido añadido a tu pedido. 
-                <br> ¡Gracias por tu compra!
-                <br> Precio: <span class="font-extrabold text-secondary">${productPrice}</span>
+                The item <strong>${productName}</strong> has been added to your order. 
+                <br> Thank you for your purchase!
+                <br> Price: <span class="font-extrabold text-secondary">${productPrice}</span>
             `;
 
+            // Make the modal visible
             document.getElementById('message-box').classList.remove('hidden');
         };
 
@@ -722,15 +735,16 @@
             // 1. Initialize configurator elements
             createBaseModelCards();
 
-            // 2. Assign event to the buy button
+            // 2. Assign event to the buy button (Configurator)
             document.getElementById('buy-button').addEventListener('click', handleConfigBuy);
             
-            // 3. Asignar eventos a botones de merchandising y periféricos (USAN LA MISMA FUNCIÓN)
+            // 3. Assign events to merchandising and peripheral buttons
+            // Select all buttons with the 'merch-buy-button' class
             document.querySelectorAll('.merch-buy-button').forEach(button => {
                 button.addEventListener('click', handleMerchBuy);
             });
 
-            // 4. Asignar evento al botón de cerrar modal
+            // 4. Assign event to close modal button
             document.getElementById('close-message-button').addEventListener('click', closeMessageBox);
 
             // 5. Initialize configurator display state
